@@ -1,0 +1,26 @@
+export default {
+  translation: {
+    welcome: 'مرحبًا بك في تطبيقنا',
+    about: 'معلومات عنا',
+    home: 'الرئيسية',
+    changeLanguage: 'تغيير اللغة',
+    english: 'الإنجليزية',
+    french: 'الفرنسية',
+    arabic: 'العربية',
+    siteTitle: 'عرض توضيحي للترجمة في Next.js',
+    description: 'هذا تطبيق متعدد اللغات يدعم الإنجليزية والفرنسية والعربية.',
+    chooseLanguage: 'اختر لغتك المفضلة',
+    aboutDescription: 'تعرف على المزيد حول مشروعنا وميزاته.',
+    madeWith: 'صنع باستخدام Next.js و react-i18next',
+    dateTimeExample: 'أمثلة على التاريخ والوقت',
+    currentDate: 'التاريخ الحالي:',
+    currentTime: 'الوقت الحالي:',
+    pastDate: 'مثال على تاريخ سابق:',
+    shareLanguage: 'مشاركة باللغة الحالية',
+    languagePreference: 'تفضيلات اللغة',
+    deviceLanguage: 'استخدام لغة الجهاز',
+    manualLanguage: 'تحديد اللغة يدويًا',
+    savePreference: 'حفظ التفضيلات',
+    siso: 'SISO (إدخال واحد وإخراج واحد) هو نظام حيث يؤدي إدخال واحد إلى إخراج واحد.',
+  }
+};

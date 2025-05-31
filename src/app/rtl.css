@@ -1,0 +1,24 @@
+/* RTL-specific styles */
+:root[dir="rtl"] {
+  /* General RTL styles */
+  text-align: right;
+}
+
+:root[dir="rtl"] .rtl-flip {
+  transform: scaleX(-1);
+}
+
+/* RTL-specific layout adjustments */
+:root[dir="rtl"] .sm\:items-start {
+  align-items: flex-end !important;
+}
+
+:root[dir="rtl"] .sm\:text-left {
+  text-align: right !important;
+}
+
+/* Right-to-left lists */
+:root[dir="rtl"] .list-decimal {
+  padding-right: 1rem;
+  padding-left: 0;
+}

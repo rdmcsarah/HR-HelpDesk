@@ -1,9 +1,44 @@
+"use client";
+
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
+
+// import Navigation from "@/app/components/Navigation";
+import { useEffect, useState } from "react";
+import "@/i18n"; // Import the i18n configuration
 
 export default function Home() {
+  const { t, i18n } = useTranslation();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    // Apply RTL styling if needed when the component mounts
+    if (i18n.language === 'ar') {
+      document.documentElement.dir = 'rtl';
+      document.documentElement.lang = 'ar';
+    } else {
+      document.documentElement.dir = 'ltr';
+      document.documentElement.lang = i18n.language;
+    }
+    
+    // Mark component as mounted to avoid hydration mismatch
+    setMounted(true);
+  }, [i18n.language]);
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
+    <div className="min-h-screen flex flex-col ">
+      {/* <Navigation /> */}
+      
+      <div className="flex-grow p-8 pb-20 font-[family-name:var(--font-geist-sans)]">
+        <main className="flex flex-col gap-[32px] items-center sm:items-start max-w-7xl mx-auto">
+          <div className="w-full flex flex-col items-center gap-4 mb-8">
+            <h1 className="text-4xl font-bold">{mounted ? t('welcome') : 'Welcome to our application'}</h1>
+            <p className="text-gray-600 dark:text-gray-300 mb-4">
+              {mounted ? t('description') : 'This is a multilingual application that supports English, French, and Arabic.'}
+            </p>
+   
+          </div>
+        
         <Image
           className="dark:invert"
           src="/next.svg"
@@ -47,11 +82,12 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Read our docs
+            {t('about')}
           </a>
         </div>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
+      <footer className="flex gap-[24px] flex-wrap items-center justify-center mt-10 pt-6 border-t border-gray-200 dark:border-gray-800">
+        <p className="text-sm text-gray-600 dark:text-gray-400">{t('madeWith')}</p>
         <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
           href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
@@ -99,5 +135,7 @@ export default function Home() {
         </a>
       </footer>
     </div>
+  </div>
   );
+    
 }

@@ -1,0 +1,26 @@
+export default {
+  translation: {
+    welcome: 'Bienvenue sur notre application',
+    about: 'À propos de nous',
+    home: 'Accueil',
+    changeLanguage: 'Changer de langue',
+    english: 'Anglais',
+    french: 'Français',
+    arabic: 'Arabe',
+    siteTitle: 'Démo Next.js i18n',
+    description: 'Ceci est une application multilingue qui prend en charge l\'anglais, le français et l\'arabe.',
+    chooseLanguage: 'Choisissez votre langue préférée',
+    aboutDescription: 'En savoir plus sur notre projet et ses fonctionnalités.',
+    madeWith: 'Réalisé avec Next.js et react-i18next',
+    dateTimeExample: 'Exemples de date et d\'heure',
+    currentDate: 'Date actuelle :',
+    currentTime: 'Heure actuelle :',
+    pastDate: 'Date passée d\'exemple :',
+    shareLanguage: 'Partager avec la langue actuelle',
+    languagePreference: 'Préférence de langue',
+    deviceLanguage: 'Utiliser la langue de l\'appareil',
+    manualLanguage: 'Sélectionner manuellement la langue',
+    savePreference: 'Enregistrer la préférence',
+     siso: 'SISOoooooooo (Single Input Single Output) is a system where one input leads to one output.',
+  }
+};
