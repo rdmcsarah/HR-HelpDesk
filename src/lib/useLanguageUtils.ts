@@ -5,7 +5,7 @@ import { useCallback } from 'react';
 // import { useTranslation } from 'react-i18next';
 // import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { usePathname, useSearchParams } from 'next/navigation';
-import { useLanguage } from '../app/components/LanguageProvider';
+import { useLanguage } from '../components/LanguageProvider';
 
 export interface LanguageUtils {
   currentLanguage: string;

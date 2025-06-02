@@ -1,12 +1,12 @@
-import LanguageSwitcher from "@/app/components/LanguageSwitcher";
-
-
+import LanguageSwitcher from "@/components/LanguageSwitcher";
+import { Suspense } from "react";
 
 export default function ChangeLanguagePage() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900">
-   
-         <LanguageSwitcher />
+    <div className="flex flex-col items-center justify-center ">
+      <Suspense fallback={<div>Loading language switcher...</div>}>
+        <LanguageSwitcher />
+      </Suspense>
     </div>
   );
 }

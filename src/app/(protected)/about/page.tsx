@@ -3,7 +3,7 @@
 // import { useTr anslation } from "react-i18next";
 // import Image from "next/image";
 
-import DateExample from "@/app/components/DateExample";
+import DateExample from "@/components/DateExample";
 import "@/i18n";
 import { useEffect, useState } from "react";
 

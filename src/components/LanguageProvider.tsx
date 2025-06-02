@@ -3,7 +3,7 @@
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
-import '../../i18n'; // Import the i18n configuration
+import '@/i18n'; // Import the i18n configuration
 
 type LanguageContextType = {
   language: string;
