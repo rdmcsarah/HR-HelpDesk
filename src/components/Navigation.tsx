@@ -612,7 +612,9 @@ const Navigation = ({
           </SidebarFooter>
           <SidebarRail />
         </Sidebar>
-        <SidebarInset>          <header className="flex h-16 shrink-0 items-center justify-between gap-2 border-b">
+        <SidebarInset>         
+{/*           
+           <header className="flex h-16 shrink-0 items-center justify-between gap-2 border-b">
             <div className="flex items-center gap-2 px-3">
               <SidebarTrigger />
               <Separator orientation="vertical" className="mr-2 h-4" />
@@ -636,16 +638,18 @@ const Navigation = ({
             </div>
             
             
-          </header>
+          </header> */}
           <main className="container mx-auto">
-            <ScrollArea
+            {/* <ScrollArea
               className="h-[calc(100vh-64px)] w-full max-w-7xl mx-auto"
               dir={i18n.language === "ar" ? "rtl" : "ltr"}
             >
-              {children}
+              
 
               <ScrollBar orientation="horizontal" />
-            </ScrollArea>
+            </ScrollArea> */}
+            
+            {children}
           </main>
         </SidebarInset>
       </SidebarProvider>

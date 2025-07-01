@@ -1,5 +1,37 @@
-npm error code ETARGET
-npm error notarget No matching version found for @chromatic-com/storybook@4.0.0-0.
-npm error notarget In most cases you or one of your dependencies are requesting
-npm error notarget a package version that doesn't exist.
-npm error A complete log of this run can be found in: C:\Users\adm_tosman\AppData\Local\npm-cache\_logs\2025-05-31T12_47_50_690Z-debug-0.log
+npm error code ERESOLVE
+npm error ERESOLVE could not resolve
+npm error
+npm error While resolving: eslint-plugin-storybook@9.0.4
+npm error Found: storybook@8.6.14
+npm error node_modules/storybook
+npm error   peer storybook@"^8.6.14" from @storybook/addon-actions@8.6.14
+npm error   node_modules/@storybook/addon-actions
+npm error     @storybook/addon-actions@"8.6.14" from @storybook/addon-essentials@8.6.14
+npm error     node_modules/@storybook/addon-essentials
+npm error       dev @storybook/addon-essentials@"^8.6.14" from the root project
+npm error   peer storybook@"^8.6.14" from @storybook/addon-backgrounds@8.6.14
+npm error   node_modules/@storybook/addon-backgrounds
+npm error     @storybook/addon-backgrounds@"8.6.14" from @storybook/addon-essentials@8.6.14
+npm error     node_modules/@storybook/addon-essentials
+npm error       dev @storybook/addon-essentials@"^8.6.14" from the root project
+npm error   26 more (@storybook/addon-controls, @storybook/addon-docs, ...)
+npm error
+npm error Could not resolve dependency:
+npm error peer storybook@"^9.0.4" from eslint-plugin-storybook@9.0.4
+npm error node_modules/eslint-plugin-storybook
+npm error   dev eslint-plugin-storybook@"^9.0.4" from the root project
+npm error
+npm error Conflicting peer dependency: storybook@9.0.13
+npm error node_modules/storybook
+npm error   peer storybook@"^9.0.4" from eslint-plugin-storybook@9.0.4
+npm error   node_modules/eslint-plugin-storybook
+npm error     dev eslint-plugin-storybook@"^9.0.4" from the root project
+npm error
+npm error Fix the upstream dependency conflict, or retry
+npm error this command with --force or --legacy-peer-deps
+npm error to accept an incorrect (and potentially broken) dependency resolution.
+npm error
+npm error
+npm error For a full report see:
+npm error C:\Users\adm_shanafy\AppData\Local\npm-cache\_logs\2025-06-24T12_34_04_645Z-eresolve-report.txt
+npm error A complete log of this run can be found in: C:\Users\adm_shanafy\AppData\Local\npm-cache\_logs\2025-06-24T12_34_04_645Z-debug-0.log

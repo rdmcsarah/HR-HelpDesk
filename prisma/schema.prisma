@@ -1,0 +1,156 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../node_modules/.prisma/client"
+    // previewFeatures = ["connectionPool"] // Enable connection pooling
+
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("POSTGRES_PRISMA_URL")
+
+  directUrl = env("POSTGRES_URL_NON_POOLING")
+  
+
+
+}
+
+model Emp {
+  id         Int         @default(autoincrement())
+  name       String
+  email      String      @unique
+  phone      String?
+  image      String?
+  department String
+  createdAt  DateTime    @default(now())
+  employeeId String      @unique
+  position   String
+  project    String?
+  managerId  String?
+  emp        Emp?        @relation("ManagerRelationship", fields: [managerId], references: [employeeId])
+  empType    EMPTYPE
+  adminOf    Req[]       @relation("AdminRelation")
+  assignedTo Req[]       @relation("AssignedRelation")
+  requests   Req[]       @relation("EmployeeRelation")
+  typeOfWork TypeOfWork[]
+
+  assignedBy   Request_History[] @relation("assignby")
+  assignedToid Request_History[] @relation("assignto")
+
+  Emp Emp[] @relation("ManagerRelationship")
+}
+
+model Req {
+  id               String        @id @default(nanoid())
+  title            String?
+  description      String?
+  requestType      RequestType
+  status           RequestStatus @default(PENDING)
+  createdAt        DateTime?     @default(now())
+  closedAt         DateTime?
+  reply            String?
+  project          String?
+  replyDocumentUrl String?
+  empId            String?
+  adminId          String?
+  assignedId       String?
+  counter          Int?
+  assignedAt       DateTime?
+  admin            Emp?          @relation("AdminRelation", fields: [adminId], references: [employeeId])
+  assigned         Emp?          @relation("AssignedRelation", fields: [assignedId], references: [employeeId])
+  emp              Emp?          @relation("EmployeeRelation", fields: [empId], references: [employeeId])
+  documentUrl      String?
+
+  requestHistory Request_History[] @relation("request")
+}
+
+enum RequestType {
+   MEDICAL_INSURANCE
+  SALARY_CERTIFICATE
+  VACATION_REQUEST
+  HR_LETTTER
+  Debit_Card
+  Payment_Slip
+  Medical_Reimbursement
+  Khazna_Tech
+  HumanPlus_Creation
+  ONBOARDING_PROCESS
+  RESIGNATION_PROCESS
+  CONTRACTS
+  SOCIAL_INSURANCE
+  PUBLIC_MEDICAL_INSURANCE
+  PRIVATE_MEDICAL_INSURANCE
+  LEAVE_REQUEST
+  KELIO_PERMISSIONS
+  OTHER
+}
+
+enum RequestStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+  REJECTED
+}
+
+enum EMPTYPE {
+  EMPLOYEE
+  ADMIN
+  SUPER_ADMIN
+  MANAGER
+}
+
+model User {
+  id         Int      @id @default(autoincrement())
+  name       String
+  email      String   @unique
+  image      String?
+  department String
+  createdAt  DateTime @default(now())
+  employeeId String   @unique
+  position   String
+}
+
+model Document {
+  id          String   @id @default(uuid())
+  name        String
+  fileName    String
+  fileUrl     String
+  size        Int
+  contentType String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Request_History {
+  id         String   @id @default(uuid())
+  requestId  String
+  assignedby String
+  assignedto String
+  time       DateTime @default(now())
+
+  request    Req @relation("request", fields: [requestId], references: [id])
+  assignedBy Emp @relation("assignby", fields: [assignedby], references: [employeeId])
+  assignedTo Emp @relation("assignto", fields: [assignedto], references: [employeeId])
+}
+
+enum TypeOfWork {
+ MEDICAL_INSURANCE
+  SALARY_CERTIFICATE
+  VACATION_REQUEST
+  HR_LETTTER
+  Debit_Card
+  Payment_Slip
+  Medical_Reimbursement
+  Khazna_Tech
+  HumanPlus_Creation
+  ONBOARDING_PROCESS
+  RESIGNATION_PROCESS
+  CONTRACTS
+  SOCIAL_INSURANCE
+  PUBLIC_MEDICAL_INSURANCE
+  PRIVATE_MEDICAL_INSURANCE
+  LEAVE_REQUEST
+  KELIO_PERMISSIONS
+  OTHER
+}
+

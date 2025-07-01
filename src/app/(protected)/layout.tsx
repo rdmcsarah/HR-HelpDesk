@@ -1,4 +1,9 @@
+"use client";
+
+
 import Navigation from "@/components/Navigation";
+import { SiteHeader } from "@/components/site-header";
+import { useEffect, useState } from "react";
 // import LanguageSwitcher from "@/app/components/LanguageSwitcher";
 interface Data {
   navMain: {
@@ -173,9 +178,76 @@ export default function ProtectedLayout({
       ],
   };
 
+
+  const [uid, setUid] = useState<string | null>(null);
+  const [token, setToken] = useState<string | null>(null);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+
+  useEffect(() => { 
+    const storeduid = localStorage.getItem("uid");
+    if (storeduid) {
+      setUid(storeduid);
+    } 
+
+    const storedToken = localStorage.getItem("token");
+    if (storedToken) {  
+      setToken(storedToken);
+    }
+
+
+    if(storedToken && storeduid) {
+
+
+      fetch("/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: storeduid,
+          token: storedToken,
+        }),
+      })
+      .then(response => response.json())
+      .then(data => {
+        // handle response data if needed
+        if (data.result) {
+          setIsAuthenticated(true);
+          // You can also store the user data or token in state if needed
+        } else {
+          console.error("Authentication failed:", data.message);
+          // Optionally, you can redirect to login or show an error message
+        }
+      })
+      .catch(error => {
+        // handle error if needed
+        console.error("Login API error:", error);
+      });
+
+      // Optionally, you can add logic here to validate the token or fetch user data
+      // For example, you could make an API call to verify the token
+    }
+  }, []);
+
+
+
+
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
-      <Navigation data={data}>{children}</Navigation>
+      {
+        isAuthenticated && (
+
+  <Navigation data={data}>
+
+    <SiteHeader />
+    {children}
+    
+    
+    </Navigation>
+
+        )
+      }
+    
     </div>
   );
 }
