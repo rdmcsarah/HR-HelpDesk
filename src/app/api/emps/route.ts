@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import { Phone } from "lucide-react";
 
 const prisma = new PrismaClient();
 
@@ -241,6 +242,7 @@ export async function PUT(request: Request) {
   try {
     // Parse request body - now expecting an array of employee updates
     const body = await request.json();
+    
     console.log("Update payload:", body);
 
     // Validate that we received an array
@@ -285,18 +287,22 @@ export async function PUT(request: Request) {
     // Process all updates in a transaction
     const updateResults = await prisma.$transaction(
       body.map((update) => {
-        const { employeeId, name, email, image, department, position, managerId, typeOfWork } = update;
+        const { employeeId, name,phone, email, image, department, position, managerId, typeOfWork,empType } = update;
 
         // Prepare update data for this employee
         const updateData: any = {
           ...(name && { name }),
           ...(email && { email }),
           ...(image && { image }),
+          ...(employeeId && { employeeId }), // Ensure employeeId is included for identification
           ...(department && { department }),
           ...(position && { position }),
           ...(managerId && { managerId }),
+          ...(empType && {empType}),
           // ...(typeOfWork && { typeOfWork }),
-            ...(typeOfWork && typeOfWork.length > 0 && { typeOfWork })
+            ...(typeOfWork && typeOfWork.length > 0 && { typeOfWork }),
+              ...(phone && { phone })  // 👈 Add this only if `phone` is a valid string
+
 
         };
 
@@ -329,7 +335,7 @@ export async function DELETE(request: Request) {
     const { searchParams } = new URL(request.url);
     const requestId = searchParams.get("id");
 
-    if (!requestId || isNaN(Number(requestId))) {
+    if (!requestId ) {
       return new Response(
         JSON.stringify({
           error: "Invalid request ID",
@@ -340,8 +346,8 @@ export async function DELETE(request: Request) {
     }
 
     // 2. Verify the request exists
-    const existingRequest = await prisma.req.findUnique({
-      where: { id: requestId },
+    const existingRequest = await prisma.emp.findUnique({
+      where: { employeeId: requestId },
     });
 
     if (!existingRequest) {
@@ -355,8 +361,8 @@ export async function DELETE(request: Request) {
     }
 
     // 3. Perform deletion
-    await prisma.req.delete({
-      where: { id: requestId },
+    await prisma.emp.delete({
+      where: { employeeId: requestId },
     });
 
     return new Response(null, { status: 204 }); // No content for successful deletion

@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Emp" ALTER COLUMN "email" DROP NOT NULL;

@@ -3,8 +3,14 @@
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { useParams } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
-import { BellIcon, Link } from "lucide-react"; // or your preferred icon library
+import { BellIcon } from "lucide-react"; // or your preferred icon library
+import LanguageSwitcher from "./LanguageSwitcher";
 import { useRouter } from "next/navigation";
+import "@/i18n"; // Import the i18n configuration
+import { useTranslation } from "react-i18next";
+import ThemeSwitcher from "./ThemeSwitcher";
+import { HomeIcon } from "lucide-react";
+import Link from "next/link";
 
 interface Employee {
   employeeId: string;
@@ -31,10 +37,27 @@ type Request = {
   assignedTo: string;
 };
 
-export function SiteHeader() {
-  const { empcode } = useParams();
+export function SiteHeader({ empCode }: { empCode: string | null }) {
+  console.log("SiteHeader empCode:", empCode);
+  // const { empcode } = useParams();
   const [employee, setEmployee] = useState<Employee | null>(null);
   const [readNotifications, setReadNotifications] = useState<number[]>([]);
+  const { t, i18n } = useTranslation();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    // Apply RTL styling if needed when the component mounts
+    if (i18n.language === "ar") {
+      document.documentElement.dir = "rtl";
+      document.documentElement.lang = "ar";
+    } else {
+      document.documentElement.dir = "ltr";
+      document.documentElement.lang = i18n.language;
+    }
+
+    // Mark component as mounted to avoid hydration mismatch
+    setMounted(true);
+  }, [i18n.language]);
 
   const [requests, setRequests] = useState<Request[]>([]);
   const [isAnimating, setIsAnimating] = useState(true);
@@ -43,7 +66,7 @@ export function SiteHeader() {
   useEffect(() => {
     const fetchRequestDetails = async () => {
       try {
-        const response = await fetch(`/api/emps?employeeId=${empcode}`);
+        const response = await fetch(`/api/emps?employeeId=${empCode}`);
         if (!response.ok) throw new Error("Failed to fetch employee details");
         const data = await response.json();
         setEmployee(data[0] || null);
@@ -55,7 +78,7 @@ export function SiteHeader() {
     };
 
     fetchRequestDetails();
-  }, [empcode]);
+  }, [empCode]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -80,30 +103,30 @@ export function SiteHeader() {
     fetchData();
   }, []);
 
-const dropdownRef = useRef<HTMLDivElement | null>(null);
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
 
-// Add click outside handler
-useEffect(() => {
-  const handleClickOutside = (event: MouseEvent) => {
-    const target = event.target as Node;
-    if (dropdownRef.current && !(dropdownRef.current as HTMLElement).contains(target)) {
-      // Check if the click is outside the dropdown and button
-      const button = document.querySelector('.notification-button');
-      if (button && !button.contains(target)) {
-        setIsOpen(false);
+  // Add click outside handler
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Node;
+      if (
+        dropdownRef.current &&
+        !(dropdownRef.current as HTMLElement).contains(target)
+      ) {
+        // Check if the click is outside the dropdown and button
+        const button = document.querySelector(".notification-button");
+        if (button && !button.contains(target)) {
+          setIsOpen(false);
+        }
       }
-    }
-  };
+    };
 
-  document.addEventListener('mousedown', handleClickOutside);
-  return () => {
-    document.removeEventListener('mousedown', handleClickOutside);
-  };
-}, []);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
-
-
-  
   // const toggleAnimation = () => {
   //   setIsAnimating(!isAnimating);
   // };
@@ -121,194 +144,167 @@ useEffect(() => {
       // You might want to actually mark them as read in your backend here
     }
   };
-
-  return (
-    <header className="bg-background  flex h-16 w-full  items-center border-b px-4 shadow-sm">
+  return (  
+    <header className="bg-background flex h-16 w-full items-center border-b px-2 sm:px-4 shadow-sm dark:bg-gray-900 dark:border-gray-800">
       <div className="flex w-full items-center justify-between">
-        <div className="flex items-center gap-4">
-          <SidebarTrigger className="h-8 w-8" />
-          {/* <Separator orientation="vertical" className="h-6" /> */}
+        <div className="flex items-center gap-1 sm:gap-4">
+          <div className="flex items-center gap-1 sm:gap-3">
+            <div className="max-w-[140px] xs:max-w-[180px] sm:max-w-none truncate">
+              <h1 className="text-xs xs:text-sm sm:text-xl font-bold leading-none flex flex-wrap items-center gap-1 sm:gap-3 m-0 sm:m-2 dark:text-white">
+                <Link href={`/helpdesk`} passHref>
+                  <HomeIcon className="w-5 h-5 xs:w-6 xs:h-6 text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-primary transition-colors cursor-pointer" />
+                </Link>
 
-          <div className="flex items-center gap-3">
-            <div>
-              <h1 className="text-xl font-bold leading-none">
-                Welcome, <span className="text-primary">{employee?.name}</span>
+                {mounted ? (
+                  <>
+                    <span className="whitespace-nowrap">{t("welcome")}</span>
+                    {employee?.name && (
+                      <span className="text-primary dark:text-primary-300 truncate whitespace-nowrap">
+                        {/* {employee.name} */}
+                        {employee.name.split(" ")[0]}{" "}
+                      </span>
+                    )}
+                  </>
+                ) : (
+                  <span className="opacity-50">&nbsp;</span>
+                )}
               </h1>
-              <p className="text-xs text-muted-foreground">
-                {employee?.position} • {employee?.department}
-              </p>
+              
+              {/* <p className="text-[10px] xs:text-xs text-muted-foreground ml-1 sm:ml-2 dark:text-gray-400 truncate">
+                {employee && (
+                  <>
+
+
+                    {employee.position && t(employee.position)}
+                      {employee.position && employee.department && " • "} 
+                    {employee.department && t(employee.department)} 
+                  </>
+                )}
+              </p> */}
+
+              {mounted && (
+  <p className="text-[10px] xs:text-xs text-muted-foreground ml-1 sm:ml-2 dark:text-gray-400 truncate">
+    {employee && (
+      <>
+
+        {employee.position && t(employee.position)}
+        {employee.position && employee.department && " • "}
+        {employee.department && t(employee.department)}
+      </>
+    )}
+
+
+    
+  </p>
+)}
             </div>
           </div>
         </div>
 
-        {employee?.empType === "SUPER_ADMIN" && (
-      
-          // <div className="relative">
-          //   <button
-          //     className="focus:outline-none relative"
-          //     // Prevent event bubbling when clicking the bell
-          //     onClick={(e) => {
-          //       e.stopPropagation();
-          //       toggleNotifications();
-          //     }}
-          //   >
-          //     <BellIcon
-          //       className={`h-6 w-6 transition-colors ${
-          //         pendingRequestsCount > 0 && isAnimating
-          //           ? "text-red-500 animate-pulse"
-          //           : "text-gray-500"
-          //       }`}
-          //     />
-          //     {pendingRequestsCount > 0 && (
-          //       <span className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-red-600 text-xs text-white shadow-md">
-          //         {pendingRequestsCount}
-          //       </span>
-          //     )}
-          //   </button>
+        {/* Right section: Bell and Language Switcher together */}
+        <div className="flex items-center gap-1 sm:gap-4">
+          {employee?.empType === "SUPER_ADMIN" && (
+            <div className="relative" ref={dropdownRef}>
+              <button
+                className="focus:outline-none relative notification-button dark:text-gray-300 p-1"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  toggleNotifications();
+                }}
+              >
+                <BellIcon
+                  className={`h-4 w-4 xs:h-5 xs:w-5 sm:h-6 sm:w-6 transition-colors ${
+                    pendingRequestsCount > 0 && isAnimating
+                      ? "text-red-500 animate-pulse dark:text-red-400"
+                      : "text-gray-500 dark:text-gray-400"
+                  }`}
+                />
+                {pendingRequestsCount > 0 && (
+                  <span className="absolute -right-1 -top-1 xs:-right-2 xs:-top-2 flex h-4 w-4 xs:h-5 xs:w-5 items-center justify-center rounded-full bg-red-600 text-[8px] xs:text-xs text-white shadow-md dark:bg-red-500">
+                    {pendingRequestsCount}
+                  </span>
+                )}
+              </button>
 
-          //   {/* Notification Dropdown */}
-          //   {isOpen && (
-          //     <div
-          //       className={`absolute right-0 mt-2 w-80 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50 transform transition-all duration-300 ease-in-out ${
-          //         isOpen
-          //           ? "translate-y-0 opacity-100"
-          //           : "-translate-y-2 opacity-0"
-          //       }`}
-          //       style={{ maxHeight: "calc(100vh - 100px)", overflowY: "auto" }}
-          //       onClick={(e) => e.stopPropagation()}
-          //     >
-          //       <div className="py-2">
-          //         <div className="px-4 py-2 border-b border-gray-200 font-semibold text-gray-700 text-sm sticky top-0 bg-white z-10">
-          //           Notifications
-          //         </div>
-          //         {requests.length > 0 ? (
-          //           requests.map((notification) => {
-          //             const isRead = readNotifications.includes(
-          //               notification.id
-          //             );
-          //             return (
-          //               <div
-          //                 key={notification.id}
-          //                 onClick={() => {
-          //                   if (!isRead) {
-          //                     setReadNotifications([
-          //                       ...readNotifications,
-          //                       notification.id,
-          //                     ]);
-          //                     setPendingRequestsCount((prev) => prev - 1);
-          //                   }
-          //                   // router.push(`/${empcode}/hr_document_admin`);
-
-          //                   router.push(`/${empcode}/hr_document_admin?filter=${notification.id}`);
-          //                   console.log(`filter=${notification.id}`)
-          //                 }}
-          //                 className={`px-4 py-3 cursor-pointer transition-colors text-sm ${
-          //                   isRead
-          //                     ? "bg-white text-gray-400"
-          //                     : "bg-blue-50 text-gray-800"
-          //                 } hover:bg-blue-100`}
-          //               >
-          //                 <div className="font-semibold">
-          //                   {notification.requestType || "Unassigned"}
-          //                 </div>
-          //                 <div className="text-xs text-gray-500">
-          //                   Click to view details
-          //                 </div>
-          //               </div>
-          //             );
-          //           })
-          //         ) : (
-          //           <div className="px-4 py-3 text-sm text-gray-500">
-          //             No new notifications
-          //           </div>
-          //         )}
-          //       </div>
-          //     </div>
-          //   )}
-          // </div>
-
-
-
-          <div className="relative" ref={dropdownRef}>
-      <button
-        className="focus:outline-none relative notification-button"
-        onClick={(e) => {
-          e.stopPropagation();
-          toggleNotifications();
-        }}
-      >
-        <BellIcon
-          className={`h-6 w-6 transition-colors ${
-            pendingRequestsCount > 0 && isAnimating
-              ? "text-red-500 animate-pulse"
-              : "text-gray-500"
-          }`}
-        />
-        {pendingRequestsCount > 0 && (
-          <span className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-red-600 text-xs text-white shadow-md">
-            {pendingRequestsCount}
-          </span>
-        )}
-      </button>
-
-      {/* Notification Dropdown */}
-      {isOpen && (
-        <div
-          className={`absolute right-0 mt-2 w-80 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50 transform transition-all duration-300 ease-in-out ${
-            isOpen
-              ? "translate-y-0 opacity-100"
-              : "-translate-y-2 opacity-0"
-          }`}
-          style={{ maxHeight: "calc(100vh - 100px)", overflowY: "auto" }}
-          onClick={(e) => e.stopPropagation()}
-        >
-          <div className="py-2">
-            <div className="px-4 py-2 border-b border-gray-200 font-semibold text-gray-700 text-sm sticky top-0 bg-white z-10">
-              Notifications
-            </div>
-            {requests.length > 0 ? (
-              requests.map((notification) => {
-                const isRead = readNotifications.includes(
-                  notification.id
-                );
-                return (
-                  <div
-                    key={notification.id}
-                    onClick={() => {
-                      if (!isRead) {
-                        setReadNotifications([
-                          ...readNotifications,
-                          notification.id,
-                        ]);
-                        setPendingRequestsCount((prev) => prev - 1);
-                      }
-                      router.push(`/${empcode}/hr_document_admin?filter=${notification.id}`);
-                    }}
-                    className={`px-4 py-3 cursor-pointer transition-colors text-sm ${
-                      isRead
-                        ? "bg-white text-gray-400"
-                        : "bg-blue-50 text-gray-800"
-                    } hover:bg-blue-100`}
-                  >
-                    <div className="font-semibold">
-                      {notification.requestType || "Unassigned"}
+              {/* Notification Dropdown */}
+              {isOpen && (
+                <div
+                  className={`absolute mt-2 w-[280px] xs:w-72 sm:w-80 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50 transform transition-all duration-300 ease-in-out dark:bg-gray-800 dark:ring-gray-700 ${
+                    isOpen
+                      ? "translate-y-0 opacity-100"
+                      : "-translate-y-2 opacity-0"
+                  }`}
+                  style={{
+                    maxHeight: "calc(100vh - 100px)",
+                    overflowY: "auto",
+                    [i18n.language === "ar" ? "left" : "right"]: 0,
+                  }}
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <div className="py-2">
+                    <div className="px-3 xs:px-4 py-2 border-b border-gray-200 font-semibold text-gray-700 text-xs xs:text-sm sticky top-0 bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300">
+                      {t("notifications")}
                     </div>
-                    <div className="text-xs text-gray-500">
-                      Click to view details
-                    </div>
+                    {requests.length > 0 ? (
+                      requests.map((notification) => {
+                        const isRead = readNotifications.includes(
+                          notification.id
+                        );
+                        return (
+                          <div
+                            key={notification.id}
+                            onClick={() => {
+                              if (!isRead) {
+                                setReadNotifications([
+                                  ...readNotifications,
+                                  notification.id,
+                                ]);
+                                setPendingRequestsCount((prev) => prev - 1);
+                              }
+                              router.push(
+                                `/hr_document_admin?filter=${notification.id}`
+                              );
+                            }}
+                            className={`px-3 xs:px-4 py-2 xs:py-3 cursor-pointer transition-colors text-xs xs:text-sm ${
+                              isRead
+                                ? "bg-white text-gray-400 dark:bg-gray-800 dark:text-gray-500"
+                                : "bg-blue-50 text-gray-800 dark:bg-gray-700 dark:text-gray-200"
+                            } hover:bg-blue-100 dark:hover:bg-gray-600`}
+                          >
+                            <div className="font-semibold">
+                              {t(notification.requestType)}
+                            </div>
+                            <div className="text-[10px] xs:text-xs text-gray-500 dark:text-gray-400">
+                              {t("double_click_to_view_details")}
+                            </div>
+                          </div>
+                        );
+                      })
+                    ) : (
+                      <div className="px-3 xs:px-4 py-2 xs:py-3 text-xs xs:text-sm text-gray-500 dark:text-gray-400">
+                        {t("no_new_notifications")}
+                      </div>
+                    )}
                   </div>
-                );
-              })
-            ) : (
-              <div className="px-4 py-3 text-sm text-gray-500">
-                No new notifications
-              </div>
-            )}
-          </div>
+                </div>
+              )}
+            </div>
+          )}
+
+
+          {(employee?.empType === "SUPER_ADMIN" ||
+    employee?.empType === "ADMIN" ||
+    employee?.empType === "MANAGER") && (
+    <button
+      onClick={() => router.push("/hr_document_admin")}
+      className="ml-2 text-sm px-3 py-1 rounded-md bg-green-600 text-white hover:bg-green-700 transition"
+    >
+      {t("admin")}
+    </button>
+  )}
+          <LanguageSwitcher />
+          <ThemeSwitcher />
         </div>
-      )}
-    </div>
-        )}
       </div>
     </header>
   );

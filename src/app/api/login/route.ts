@@ -18,7 +18,7 @@ export async function POST(request: Request) {
     }
 
     // 3. Make the API call
-    const apiResponse = await fetch("https://rdmc-portal.com/api/login", {
+    const apiResponse = await fetch("https://portal10.vercel.app/api/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

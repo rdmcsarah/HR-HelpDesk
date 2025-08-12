@@ -11,6 +11,7 @@ datasource db {
 
   directUrl = env("POSTGRES_URL_NON_POOLING")
   
+  
 
 
 }
@@ -18,10 +19,10 @@ datasource db {
 model Emp {
   id         Int         @default(autoincrement())
   name       String
-  email      String      @unique
+  email      String ?     
   phone      String?
   image      String?
-  department String
+  department String?
   createdAt  DateTime    @default(now())
   employeeId String      @unique
   position   String
@@ -60,7 +61,8 @@ model Req {
   assigned         Emp?          @relation("AssignedRelation", fields: [assignedId], references: [employeeId])
   emp              Emp?          @relation("EmployeeRelation", fields: [empId], references: [employeeId])
   documentUrl      String?
-
+documentUrlNew String[]
+replydocumentUrlNew String[]
   requestHistory Request_History[] @relation("request")
 }
 

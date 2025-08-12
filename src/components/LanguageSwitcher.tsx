@@ -52,18 +52,17 @@ const LanguageSwitcher: React.FC = () => {  const { t } = useTranslation();
 
 
 
-          {t('english')}
        
-          
+          English
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => handleLanguageChange('fr')}>
 
-            {t('french')}
+           Français
         
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => handleLanguageChange('ar')}>
        
-            {t('arabic')}
+            العربية
          
         </DropdownMenuItem>
         </DropdownMenuContent>

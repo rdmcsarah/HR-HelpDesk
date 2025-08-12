@@ -1,19 +1,19 @@
-import React from "react";
-import { SiteHeader } from "./site-header";
-import type { Meta, StoryObj } from "@storybook/react";
+// import React from "react";
+// import { SiteHeader } from "./site-header";
+// import type { Meta, StoryObj } from "@storybook/react";
 
-const meta: Meta<typeof SiteHeader> = {
-  title: "Components/SiteHeader",
-  component: SiteHeader,
-  parameters: {
-    layout: "fullscreen",
-  },
-};
+// const meta: Meta<typeof SiteHeader> = {
+//   title: "Components/SiteHeader",
+//   component: SiteHeader,
+//   parameters: {
+//     layout: "fullscreen",
+//   },
+// };
 
-export default meta;
+// export default meta;
 
-type Story = StoryObj<typeof SiteHeader>;
+// type Story = StoryObj<typeof SiteHeader>;
 
-export const Default: Story = {
-  render: () => <SiteHeader />,
-};
+// export const Default: Story = {
+//   render: () => <SiteHeader />,
+// };

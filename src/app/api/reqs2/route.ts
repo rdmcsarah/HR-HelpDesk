@@ -1,6 +1,11 @@
-import { Prisma, PrismaClient, RequestType } from "@prisma/client";
+import { Prisma, PrismaClient } from "@prisma/client";
 import { time } from "console";
 import { NextResponse } from "next/server";
+import crypto from "crypto";
+
+function generateHexId() {
+  return `SA_${crypto.randomBytes(4).toString("hex").toUpperCase()}`; // Example: SA_3FA4C9D1
+}
 // import {prisma} from "@/prisma/prisma";
 const prisma = new PrismaClient();
 
@@ -19,13 +24,13 @@ export async function GET(request: Request) {
       where.empId = empId; // Ensure id is a number
     }
 
-    const ring= searchParams.get("ring");
-if (ring !== null && ring === "") {
+    const ring = searchParams.get("ring");
+    if (ring !== null && ring === "") {
+      // Return all pending requests, regardless of request history
       where.status = "PENDING";
-      where.requestHistory = {
-        none: {}
-      } // Correct syntax for Prisma 6.8.2
-
+  where.requestHistory = {
+    none: {} // Matches only if the array is empty (no entries)
+  };
     }
 
     if (title) {
@@ -122,7 +127,7 @@ if (assignedId) {
         where: { managerId: managerId },
       });
 
-      const employeeIds = employees.map((e) => e.employeeId);
+      const employeeIds = employees.map((e: { employeeId: string }) => e.employeeId);
 
       if (employeeIds.length === 0) {
         return new Response(JSON.stringify([]), {
@@ -241,15 +246,18 @@ export async function POST(request: Request) {
       return NextResponse.json(
         {
           error: "User not found",
-          details: `No employee with ID ${empId} exists`,
+          details: `No employee with ID **${empId} exists`,
         },
         { status: 404 }
       );
     }
 
     // Create the request
+            const hexId = generateHexId();
+
     const newRequest = await prisma.req.create({
       data: {
+        id: hexId, // Use the generated hex ID
         title: body.title,
         description: body.description,
         status: body.status,
@@ -258,10 +266,19 @@ export async function POST(request: Request) {
         documentUrl: body.documentUrl,
         replyDocumentUrl: body.replyDocumentUrl,
         project: body.project, // Add project field
+        documentUrlNew:body.documentUrlNew,
+        replydocumentUrlNew:body.replydocumentUrlNew
       },
     });
-
-    return NextResponse.json(newRequest, { status: 201 });
+    return NextResponse.json(newRequest, { 
+      status: 201,
+      headers: {
+       "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type",
+      }
+    });
+    // return NextResponse.json(newRequest, { status: 201 });
   } catch (error) {
     console.error("Error creating request:", error);
     return NextResponse.json(
@@ -299,6 +316,7 @@ export async function PUT(request: Request) {
       assignedAt,
       replyDocumentUrl,
       assignedId,
+      replydocumentUrlNew
     } = body;
 
     let updatedData: any = null;
@@ -360,7 +378,7 @@ export async function PUT(request: Request) {
           reply,
           status,
           replyDocumentUrl,
-          closedAt: new Date(),
+          ...(replydocumentUrlNew !== null && { replydocumentUrlNew }), // Only include if not null          closedAt: new Date(),
         };
       }
     }

@@ -95,6 +95,160 @@ const transporter = nodemailer.createTransport({
 // };
 
 
+// export const POST = async (req: Request) => {
+//   try {
+//     const { html } = await req.json();
+//     const { searchParams } = new URL(req.url);
+//     const empId = searchParams.get("employeeId");
+
+//     if (!html) {
+//       return new NextResponse(
+//         JSON.stringify({ message: "MAIL CONTENT IS REQUIRED" }),
+//         { status: 400 } // Changed from 500 to 400 (Bad Request)
+//       );
+//     }
+
+//     if (!empId) {
+//       return new NextResponse(
+//         JSON.stringify({ message: "EMPLOYEE ID IS REQUIRED" }),
+//         { status: 400 }
+//       );
+//     }
+
+//     const employee = await prisma.emp.findUnique({
+//       where: { employeeId: empId },
+//     });
+
+//     if (!employee) {
+//       return new NextResponse(
+//         JSON.stringify({ message: "EMPLOYEE NOT FOUND" }),
+//         { status: 404 }
+//       );
+//     }
+
+//     const mailOptions = {
+//       from: process.env.EMAIL_USER,
+//       to: employee.email,
+//       subject: "HrPortal Task",
+//       html: html,
+//     };
+
+//     // Send email to employee
+
+//     // If employee has a manager, send CC to manager
+//     if (employee.managerId) {
+//       const manager = await prisma.emp.findUnique({
+//         where: { employeeId: employee.managerId },
+//       });
+
+//       if (manager) {
+//         await transporter.sendMail({
+//           ...mailOptions,
+//           cc: manager.email,
+//         });
+//       }
+//     }else {
+//           await transporter.sendMail(mailOptions);
+
+//     }
+
+//     return new NextResponse(
+//       JSON.stringify({ message: "MAIL SENT SUCCESSFULLY" }),
+//       { status: 200 }
+//     );
+//   } catch (e: any) {
+//     console.error("Error sending email:", e); // Added error logging
+//     return new NextResponse(
+//       JSON.stringify({ 
+//         error: e.message,
+//         message: "FAILED TO SEND EMAIL" 
+//       }), 
+//       { status: 500 }
+//     );
+//   }
+// };
+
+
+// export const POST = async (req: Request) => {
+//   try {
+//     const { html } = await req.json();
+//     const { searchParams } = new URL(req.url);
+//     const empId = searchParams.get("employeeId");
+
+//     if (!html) {
+//       return new NextResponse(
+//         JSON.stringify({ message: "MAIL CONTENT IS REQUIRED" }),
+//         { status: 400 }
+//       );
+//     }
+
+//     if (!empId) {
+//       return new NextResponse(
+//         JSON.stringify({ message: "EMPLOYEE ID IS REQUIRED" }),
+//         { status: 400 }
+//       );
+//     }
+
+//     const employee = await prisma.emp.findUnique({
+//       where: { employeeId: empId },
+//     });
+
+//     if (!employee) {
+//       return new NextResponse(
+//         JSON.stringify({ message: "EMPLOYEE NOT FOUND" }),
+//         { status: 404 }
+//       );
+//     }
+
+//     // Create base mail options with type assertions
+//     const mailOptions = {
+//       from: process.env.EMAIL_USER as string,
+//       to: employee.email as string, // Assert as string since we know it exists from @unique
+//       subject: "Hr Help Desk",
+//       html: html,
+//     };
+
+//     // If employee has a manager, send CC to manager
+//     if (employee.managerId) {
+//       const manager = await prisma.emp.findUnique({
+//         where: { employeeId: employee.managerId },
+//       });
+
+//       if (manager?.email) {
+//         await transporter.sendMail({
+//           ...mailOptions,
+//           cc: manager.email as string, // Assert as string
+//         });
+//         return new NextResponse(
+//           JSON.stringify({ message: "MAIL SENT WITH CC TO MANAGER" }),
+//           { status: 200 }
+//         );
+//       }
+//     }
+
+//     // Default case - send without CC
+//     await transporter.sendMail(mailOptions);
+//     console.log("Email sent successfully to:", employee.email);
+//     return new NextResponse(
+//       JSON.stringify({  "success": true,
+//  message: "MAIL SENT SUCCESSFULLY" }),
+//       { status: 200 }
+//     );
+
+
+//   } catch (e: any) {
+//     console.error("Error sending email:", e);
+//     return new NextResponse(
+//       JSON.stringify({ 
+//         error: e.message,
+//         message: "FAILED TO SEND EMAIL" 
+//       }), 
+//       { status: 500 }
+//     );
+//   }
+// };
+
+
 export const POST = async (req: Request) => {
   try {
     const { html } = await req.json();
@@ -104,7 +258,7 @@ export const POST = async (req: Request) => {
     if (!html) {
       return new NextResponse(
         JSON.stringify({ message: "MAIL CONTENT IS REQUIRED" }),
-        { status: 400 } // Changed from 500 to 400 (Bad Request)
+        { status: 400 }
       );
     }
 
@@ -126,43 +280,49 @@ export const POST = async (req: Request) => {
       );
     }
 
-    const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to: employee.email,
-      subject: "HrPortal Task",
-      html: html,
-    };
-
-    // Send email to employee
-
-    // If employee has a manager, send CC to manager
+    // Fetch manager's email if any
+    let ccEmail: string | undefined;
     if (employee.managerId) {
       const manager = await prisma.emp.findUnique({
         where: { employeeId: employee.managerId },
       });
 
-      if (manager) {
-        await transporter.sendMail({
-          ...mailOptions,
-          cc: manager.email,
-        });
+      if (manager?.email) {
+        ccEmail = manager.email;
       }
-    }else {
-          await transporter.sendMail(mailOptions);
+    }
 
+    // Send the email using external API
+    const response = await fetch("https://n8n.srv869586.hstgr.cloud/webhook/sarah", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        sentTo: employee.email,
+        cc: ccEmail || "",
+        subject: "Hr Help Desk",
+        body: html,
+      }),
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`External email API failed: ${errorText}`);
     }
 
     return new NextResponse(
-      JSON.stringify({ message: "MAIL SENT SUCCESSFULLY" }),
+      JSON.stringify({ success: true, message: "MAIL SENT SUCCESSFULLY" }),
       { status: 200 }
     );
+
   } catch (e: any) {
-    console.error("Error sending email:", e); // Added error logging
+    console.error("Error sending email:", e);
     return new NextResponse(
-      JSON.stringify({ 
+      JSON.stringify({
         error: e.message,
-        message: "FAILED TO SEND EMAIL" 
-      }), 
+        message: "FAILED TO SEND EMAIL",
+      }),
       { status: 500 }
     );
   }

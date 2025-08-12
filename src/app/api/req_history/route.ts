@@ -27,3 +27,17 @@ const { searchParams } = new URL(request.url);
   }
 }
 export const dynamic = 'force-dynamic' // If you need full dynamic behavior
+
+
+export async function DELETE() 
+{
+  try {
+    // Delete all records from request_History
+    await prisma.request_History.deleteMany({});
+    
+    return NextResponse.json({ message: 'All request history records deleted successfully.' });
+  } catch (error) {
+    console.error('Error deleting request history:', error);
+    return NextResponse.json({ error: 'Failed to delete request history.' }, { status: 500 });
+  }
+}
