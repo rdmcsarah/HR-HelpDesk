@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import "@/i18n";
 import { useTranslation } from "react-i18next";
 import i18n from "@/i18n";
+import { useEmployee } from "@/context/EmployeeContext";
 interface Request {
   emp: any;
   id: number;
@@ -60,27 +61,36 @@ export default function Page() {
   const { t, i18n } = useTranslation();
 
   // First: Handle authentication and get empcode
-  useEffect(() => {
-    const fetchAuth = async () => {
-      try {
-        const res = await fetch("/api/auth", {
-          method: "GET",
-          credentials: "include"
-        });
-        const response = await res.json();
-        if (response.username) {
-          setEmpcode(response.username);
-          setIsAuthenticated(true);
-        } else {
-          router.push('/login'); // or handle unauthenticated user
-        }
-      } catch (err) {
-        console.error("Auth failed:", err);
-        router.push('/login');
-      }
-    };
-    fetchAuth();
-  }, [router]);
+  // useEffect(() => {
+  //   const fetchAuth = async () => {
+  //     try {
+  //       const res = await fetch("/api/auth", {
+  //         method: "GET",
+  //         credentials: "include"
+  //       });
+  //       const response = await res.json();
+  //       if (response.username) {
+  //         setEmpcode(response.username);
+  //         setIsAuthenticated(true);
+  //       } else {
+  //         router.push('/login'); // or handle unauthenticated user
+  //       }
+  //     } catch (err) {
+  //       console.error("Auth failed:", err);
+  //       router.push('/login');
+  //     }
+  //   };
+  //   fetchAuth();
+  // }, [router]);
+  const { empdata } = useEmployee();
+
+useEffect(() => {
+
+  setEmpcode(empdata?.empcode || "");
+
+
+  },[empdata]);
+
 
   // Second: Once we have empcode, fetch employee data
   useEffect(() => {

@@ -561,6 +561,22 @@ const createColumns = (
     ),
     enableHiding: true,
   },
+    {
+    accessorKey: "empId",
+    header: () => (
+      <div className="px-4 py-2 text-center font-semibold">
+        {mounted ? (
+          <>{t("EmployeeId")}</>
+        ) : (
+          <span className="opacity-50">&nbsp;</span>
+        )}
+      </div>
+    ),
+    cell: ({ row }) => (
+      <div className="px-4 py-2 text-center">{row.original.emp?.employeeId}</div>
+    ),
+    enableHiding: true,
+  },
   {
     accessorKey: "createdOn",
     header: () => (
@@ -1220,6 +1236,7 @@ export default function DataTable({
       `Requests_${formatFileName(startDate)}_to_${formatFileName(endDate)}`
     );
   };
+const [employeeIdValue, setEmployeeIdValue] = useState("");
 
   console.log("Visibility State:", columnVisibility);
   console.log(
@@ -1814,16 +1831,30 @@ export default function DataTable({
             </select>
           )}
 
-          <Input
-            placeholder={mounted ? t("searchRequestId") : ""}
-            value={inputValue || ""}
-            onChange={(event) => {
-              const value = event.target.value;
-              setInputValue(value);
-              table.getColumn("id")?.setFilterValue(value);
-            }}
-            className="h-7 xs:h-8 w-full xs:w-[200px] sm:w-[300px] text-xs focus:ring-green-300 focus:border-green-500 bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300 dark:placeholder-gray-400"
-          />
+<div className="flex flex-wrap gap-2 items-center">
+  <Input
+    placeholder={mounted ? t("searchRequestId") : ""}
+    value={inputValue || ""}
+    onChange={(event) => {
+      const value = event.target.value;
+      setInputValue(value);
+      table.getColumn("id")?.setFilterValue(value);
+    }}
+    className="h-8 w-[200px] sm:w-[250px] md:w-[300px] text-xs focus:ring-green-300 focus:border-green-500 bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300 dark:placeholder-gray-400"
+  />
+
+  <Input
+    placeholder={mounted ? t("searchEmployeeId") : ""}
+    value={employeeIdValue}
+    onChange={(event) => {
+      const value = event.target.value;
+      setEmployeeIdValue(value);
+      table.getColumn("empId")?.setFilterValue(value);
+    }}
+    className="h-7 w-[120px] sm:w-[140px] md:w-[180px] px-2 text-xs focus:ring-green-300 focus:border-green-500 bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300 dark:placeholder-gray-400"
+  />
+</div>
+
         </div>
 
         <ColumnSelector />

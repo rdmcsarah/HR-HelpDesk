@@ -20,6 +20,19 @@ export async function POST(request: Request) {
     );
 
 
+    // const {  token2 } = await request.json();
+    // if (!token2) {
+    //   return NextResponse.json({ error: "Missing username or token" }, { status: 400 });
+    // }
+
+
+
+    // const newToken = jwt.sign(
+    //   {  token2 },
+    //   process.env.token_encryption_key || 'default_secret',
+    //   { expiresIn: '1h' }
+    // );
+
 
 
 

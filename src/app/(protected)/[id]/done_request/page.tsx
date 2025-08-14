@@ -233,6 +233,7 @@ import { useEffect, useState } from "react";
 import "@/i18n";
 import { useTranslation } from "react-i18next";
 import i18n from "@/i18n";
+import { useEmployee } from "@/context/EmployeeContext";
 interface Emp {
   id: number;
   name: string;
@@ -253,27 +254,35 @@ export default function Page() {
   const { t, i18n } = useTranslation();
 
   // Fetch authentication data
-  useEffect(() => {
-    const fetchAuth = async () => {
-      try {
-        const res = await fetch("/api/auth", {
-          method: "GET",
-          credentials: "include"
-        });
+  // useEffect(() => {
+  //   const fetchAuth = async () => {
+  //     try {
+  //       const res = await fetch("/api/auth", {
+  //         method: "GET",
+  //         credentials: "include"
+  //       });
         
-        if (!res.ok) {
-          throw new Error('Failed to fetch authentication data');
-        }
+  //       if (!res.ok) {
+  //         throw new Error('Failed to fetch authentication data');
+  //       }
         
-        const response = await res.json();
-        setEmpcode(response.username || "");
-      } catch (error) {
-        console.error("Authentication error:", error);
-      }
-    };
+  //       const response = await res.json();
+  //       setEmpcode(response.username || "");
+  //     } catch (error) {
+  //       console.error("Authentication error:", error);
+  //     }
+  //   };
     
-    fetchAuth();
-  }, []);
+  //   fetchAuth();
+  // }, []);
+const { empdata } = useEmployee();
+
+useEffect(() => {
+
+  setEmpcode(empdata?.empcode || "");
+
+
+  },[empdata]);
 
   // RTL/LTR handling
   useEffect(() => {

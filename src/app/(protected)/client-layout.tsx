@@ -21,7 +21,13 @@ interface Data {
     }[];
   }[];
 }
-
+interface JwtPayload {
+  empcode: string;
+  email: string;
+  mobile: string;
+  token: number;
+  iat: number;
+}
 export default function ClientLayout({
   children,
   sessionAuth,
@@ -110,7 +116,40 @@ useEffect(() => {
   };
   fetchAuth();
 }, []);
-  
+  //  useEffect(() => {
+  //   // Get token from URL
+  //   const urlParams = new URLSearchParams(window.location.search);
+  //   const tokenFromUrl = urlParams.get("token");
+
+  //   if (!tokenFromUrl) return;
+
+  //   try {
+  //     // Decode token
+
+  //     // Fetch user data from API
+  //     fetch(`/api/login2`,{
+  //       method: "POST",
+  //       body: JSON.stringify({ token: tokenFromUrl }),
+  //     })
+  //       .then((res) => res.json())
+  //       .then((userData) => {
+  //         console.log("User eeeeeeeeeeeeeeeedata:", userData);
+
+  //         // Send to webhook
+  //         return fetch("https://your-webhook-url.com", {
+  //           method: "POST",
+  //           headers: { "Content-Type": "application/json" },
+  //           body: JSON.stringify(userData),
+  //         });
+  //       })
+  //       .then(() => {
+  //         console.log("✅ Data sent to webhook");
+  //       })
+  //       .catch((err) => console.error("Error:", err));
+  //   } catch (err) {
+  //     console.error("Invalid token:", err);
+  //   }
+  // }, []);
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 flex flex-col">

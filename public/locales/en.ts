@@ -144,7 +144,7 @@ maxLengthReached: "You’ve reached the maximum of 500 characters.",
       PENDING: "Pending",
       REJECTED: "Rejected",
     },
-
+searchEmployeeId:"Employee Id",
     back: "Back",
     fetchEmployeeError: "Failed to load employee",
     fetchDataError: "Error fetching data",

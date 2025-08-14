@@ -1,4 +1,5 @@
 "use client"
+import { useEmployee } from '@/context/EmployeeContext';
 import { use, useEffect, useState } from 'react';
 
 export default function ExcelUploader() {
@@ -38,17 +39,25 @@ export default function ExcelUploader() {
     }
   };
 
-useEffect(() => {
-  const fetchAuth = async () => {
-    const res = await fetch("/api/auth", {
-      method: "GET",
-      credentials: "include"
-    });
-    const response = await res.json();
-    console.log("refeqfws", response.username);
-  };
-  fetchAuth();
-}, []);
+// useEffect(() => {
+//   const fetchAuth = async () => {
+//     const res = await fetch("/api/auth", {
+//       method: "GET",
+//       credentials: "include"
+//     });
+//     const response = await res.json();
+//     console.log("refeqfws", response.username);
+//   };
+//   fetchAuth();
+// }, []);
+const { empdata } = useEmployee();
+
+// useEffect(() => {
+
+//   setEmpcode(empdata?.empcode || "");
+
+
+//   },[empdata]);
 
   return (
     <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">

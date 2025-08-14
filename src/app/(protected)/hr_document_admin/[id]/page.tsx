@@ -9,6 +9,7 @@ import { Link } from "lucide-react";
 import "@/i18n";
 import { useTranslation } from "react-i18next";
 import i18n from "@/i18n";
+import { useEmployee } from "@/context/EmployeeContext";
 type Request = {
   id: string;
   employeeId: string;
@@ -79,18 +80,26 @@ export default function RequestDetailsPage() {
   const [requestHistory, setRequestHistory] = useState<RequestHistory | null>(null);
 
   // Fetch authentication data
-  useEffect(() => {
-    const fetchAuth = async () => {
-      const res = await fetch("/api/auth", {
-        method: "GET",
-        credentials: "include"
-      });
-      const response = await res.json();
-      console.log("refeqfws", response.username);
-      setEmpcode(response.username);
-    };
-    fetchAuth();
-  }, []);
+  // useEffect(() => {
+  //   const fetchAuth = async () => {
+  //     const res = await fetch("/api/auth", {
+  //       method: "GET",
+  //       credentials: "include"
+  //     });
+  //     const response = await res.json();
+  //     console.log("refeqfws", response.username);
+  //     setEmpcode(response.username);
+  //   };
+  //   fetchAuth();
+  // }, []);
+const { empdata } = useEmployee();
+
+useEffect(() => {
+
+  setEmpcode(empdata?.empcode || "");
+
+
+  },[empdata]);
 
   // RTL/LTR handling
   useEffect(() => {

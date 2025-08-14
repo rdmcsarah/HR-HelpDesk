@@ -9,6 +9,8 @@ import "@/i18n";
 import { useTranslation } from "react-i18next";
 import i18n from "@/i18n";
 import { set } from "date-fns";
+import { useEmployee } from '@/context/EmployeeContext';
+import { json } from "stream/consumers";
 export default function Page() {
   type Employee = {
  name: string;
@@ -26,19 +28,28 @@ export default function Page() {
   const [titleError, setTitleError] = useState("");
 const [empcode, setEmpcode] = useState<string | "">("");
 const [authenticated, setIsAuthenticated] = useState(false);
+// useEffect(() => {
+//   const fetchAuth = async () => {
+//     const res = await fetch("/api/auth", {
+//       method: "GET",
+//       credentials: "include"
+//     });
+//     const response = await res.json();
+//     console.log("refeqfws", response.username);
+//     setEmpcode(response.username);
+//     setIsAuthenticated(true);
+//   };
+//   fetchAuth();
+// }, []);
+const { empdata } = useEmployee();
+
 useEffect(() => {
-  const fetchAuth = async () => {
-    const res = await fetch("/api/auth", {
-      method: "GET",
-      credentials: "include"
-    });
-    const response = await res.json();
-    console.log("refeqfws", response.username);
-    setEmpcode(response.username);
-    setIsAuthenticated(true);
-  };
-  fetchAuth();
-}, []);
+
+  setEmpcode(empdata?.empcode || "");
+
+
+  },[empdata]);
+
 
   type Request = {
     id: string;
@@ -376,6 +387,11 @@ const [files, setFiles] = useState<File[]>([]);
         backgroundAttachment: "fixed",
       }}
     >
+
+      {/* <pre>{JSON.stringify(empdata,null,2)}</pre> */}
+
+
+
       <div className="bg-white rounded-2xl bg-opacity-90 p-6 md:p-10 lg:p-12 w-full max-w-[1000px] my-8 shadow-xl dark:bg-gray-800 dark:bg-opacity-90">
         <form onSubmit={handleSubmit}>
           <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-6 text-center dark:text-white">

@@ -9,6 +9,7 @@ import "@/i18n";
 import { useTranslation } from "react-i18next";
 import i18n from "@/i18n";
 import { set } from "date-fns";
+import { useEmployee } from "@/context/EmployeeContext";
 export default function Page() {
   type Employee = {
  name: string;
@@ -26,19 +27,27 @@ export default function Page() {
   const [titleError, setTitleError] = useState("");
 const [empcode, setEmpcode] = useState<string | "">("");
 const [authenticated, setIsAuthenticated] = useState(false);
+// useEffect(() => {
+//   const fetchAuth = async () => {
+//     const res = await fetch("/api/auth", {
+//       method: "GET",
+//       credentials: "include"
+//     });
+//     const response = await res.json();
+//     console.log("refeqfws", response.username);
+//     setEmpcode(response.username);
+//     setIsAuthenticated(true);
+//   };
+//   fetchAuth();
+// }, []);
+const { empdata } = useEmployee();
+
 useEffect(() => {
-  const fetchAuth = async () => {
-    const res = await fetch("/api/auth", {
-      method: "GET",
-      credentials: "include"
-    });
-    const response = await res.json();
-    console.log("refeqfws", response.username);
-    setEmpcode(response.username);
-    setIsAuthenticated(true);
-  };
-  fetchAuth();
-}, []);
+
+  setEmpcode(empdata?.empcode || "");
+
+
+  },[empdata]);
 
   type Request = {
     id: string;

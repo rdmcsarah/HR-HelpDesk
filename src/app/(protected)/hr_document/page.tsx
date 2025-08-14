@@ -6,6 +6,7 @@ import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import "@/i18n"; // Import the i18n configuration
 import { useTranslation } from "react-i18next";
+import { useEmployee } from "@/context/EmployeeContext";
 export default function Page() {
   const [empcode , setEmpcode] = useState<string | null>(null);
   const[authenticated, setIsAuthenticated] = useState(false);
@@ -41,20 +42,28 @@ export default function Page() {
   }
 
 
-  useEffect(() => {
-  const fetchAuth = async () => {
-    const res = await fetch("/api/auth", {
-      method: "GET",
-      credentials: "include"
-    });
-    const response = await res.json();
-    console.log("refeqfws", response.username);
-    setEmpcode(response.username);
-    setIsAuthenticated(true);
-  };
-  fetchAuth();
-}, []);
+//   useEffect(() => {
+//   const fetchAuth = async () => {
+//     const res = await fetch("/api/auth", {
+//       method: "GET",
+//       credentials: "include"
+//     });
+//     const response = await res.json();
+//     console.log("refeqfws", response.username);
+//     setEmpcode(response.username);
+//     setIsAuthenticated(true);
+//   };
+//   fetchAuth();
+// }, []);
   
+const { empdata } = useEmployee();
+
+useEffect(() => {
+
+  setEmpcode(empdata?.empcode || "");
+
+
+  },[empdata]);
 
 
   const [requests, setRequests] = useState<Request[]>([]);

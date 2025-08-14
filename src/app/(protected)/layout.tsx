@@ -1,19 +1,24 @@
-import { cookies } from "next/headers";
-import ClientLayout from "./client-layout";
+"use client";
 
-export default async function ProtectedServerLayout({
+import { LanguageProvider } from "@/components/LanguageProvider";
+import ClientWrapper from "@/app/ClientWrapper";
+import { EmployeeProvider } from '@/context/EmployeeContext';
+import ProtectedContent from './ProtectedContent';
+
+export default function ProtectedServerLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // Get cookies in the server component
-  const cookieStore = await cookies();
-  const sessionAuth = cookieStore.get("session_auth")?.value;
-  
   return (
-    <ClientLayout sessionAuth={sessionAuth}>
-      {children}
-    </ClientLayout>
+    <ClientWrapper>
+      <LanguageProvider>
+        <EmployeeProvider>
+          <ProtectedContent>
+            {children}
+          </ProtectedContent>
+        </EmployeeProvider>
+      </LanguageProvider>
+    </ClientWrapper>
   );
 }
-
