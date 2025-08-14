@@ -93,26 +93,10 @@ function LoginContent() {
   }, [error]);
 
   return (
-    <div className="ssss">
+    <div >
 
-              <div className={`min-h-screen flex flex-col items-center justify-center bg-gray-100 dark:bg-gray-900 `}>
-  <div className="w-full max-w-md px-4">
-    {/* Progress bar track */}
-    <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-      {/* Progress bar fill */}
-      <div
-        className="bg-green-600 h-2.5 rounded-full transition-all duration-300 ease-out dark:bg-green-500"
-        style={{ width: `100%` }}
-      ></div>
-    </div>
-    
-    {/* Progress text */}
-    <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
-      100% Loading
-    </p>
-  </div>
-</div>
-      {/* {loading ? <LoadingPage /> : null} */}
+
+      {loading ? <LoadingPage /> : null}
       {/* {error && <div className="error">{error}</div>}
         {JSON.stringify(empdata, null, 2)} */}
     </div>
