@@ -280,7 +280,7 @@ const emailHtml = `
     
     <p>
       <a 
-        href="https://hr-helpdesk-final-tryon.vercel.app/hr_document_admin/${row.original.id}" 
+        href="https://hr-helpdesk.vercel.app/hr_document_admin/${row.original.id}" 
         style="color: #1a73e8; text-decoration: none;"
         target="_blank"
       >

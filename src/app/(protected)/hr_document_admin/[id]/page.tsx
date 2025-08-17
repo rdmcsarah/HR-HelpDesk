@@ -94,6 +94,14 @@ export default function RequestDetailsPage() {
   // }, []);
 const { empdata } = useEmployee();
 
+
+useEffect(() => {
+
+  console.log("empdata in request details page", "empdata");
+
+
+}, []);
+
 useEffect(() => {
 
   setEmpcode(empdata?.empcode || "");
@@ -358,7 +366,7 @@ const emailHtml = `
 
     <p>
       <a 
-        href="https://hr-helpdesk-final-tryon.vercel.app/hr_document/${id}" 
+        href="https://hr-helpdesk.vercel.app/hr_document/${id}" 
         target="_blank" 
         style="color: #ffffff; background-color: #1a73e8; padding: 10px 15px; text-decoration: none; border-radius: 4px; display: inline-block;"
       >
