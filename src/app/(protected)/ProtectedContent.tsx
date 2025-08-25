@@ -20,7 +20,8 @@ export default function ProtectedContent({
         .then(response => {
           if (response.data) {
             setEmpdata(response.data);
-          }else{
+          }
+          else{
             // console.error("No employee data found in session response");
             location.href = 'https://rdmc-portal.com'; // Redirect to login if no employee data
           }

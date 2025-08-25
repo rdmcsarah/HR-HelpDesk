@@ -147,6 +147,7 @@ export async function POST(request: Request) {
             empType: employee.empType,
             managerId: employee.managerId,
             typeOfWork: employee.typeOfWork,
+            // updatedAt: new Date(), // Set updatedAt to current date
           },
         })
       )
