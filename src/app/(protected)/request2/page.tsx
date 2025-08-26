@@ -887,7 +887,7 @@ const [files, setFiles] = useState<File[]>([]);
       }
 
       setUploadedUrls(urls);
-      setUploadStatus({ success: true, message: t("Filesuploadedsuccessfully") });
+      // setUploadStatus({ success: true, message: t("Filesuploadedsuccessfully") });
     // Handle file upload if a file is selected
     if (file) {
       const uploadData = new FormData();
@@ -1281,7 +1281,7 @@ const [files, setFiles] = useState<File[]>([]);
     className="rounded-xl border border-gray-300 p-3 focus:border-green-600 focus:ring-2 focus:ring-green-200 focus:outline-none w-full transition min-h-[120px] dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:border-green-500 dark:focus:ring-green-900"
     placeholder={t("descriptionPlaceholder")}
     rows={4}
-    maxLength={500}
+    maxLength={300}
     value={formData.description}
     onChange={handleChange}
   />

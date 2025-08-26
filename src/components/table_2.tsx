@@ -368,7 +368,7 @@ const emailHtml = `
       <select
         value={currentEmployeeId}
         onChange={(e) => handleEmpChange(e.target.value)}
-        className="w-[150px] bg-white border border-gray-300 rounded-md px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300 dark:focus:ring-blue-600 dark:focus:border-blue-600"
+        className="w-[150px] bg-white border border-gray-300 rounded-md px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300 dark:focus:ring-green-600 dark:focus:border-green-600"
       >
         <option value="" className="dark:bg-gray-800 dark:text-gray-300">
           {t("Unassigned")}
@@ -416,7 +416,7 @@ const createColumns = (
         <div className="px-2 py-3 text-center capitalize">{localizedIndex}</div>
       );
     },
-    enableHiding: false,
+    enableHiding: true,
   },
   {
     accessorKey: "id",
@@ -546,7 +546,7 @@ const createColumns = (
       ]
     : []),
   {
-    accessorKey: "employeeName",
+    accessorKey: "requester",
     header: () => (
       <div className="px-4 py-2 text-center font-semibold">
         {mounted ? (
@@ -820,7 +820,7 @@ const createColumns = (
   },
 
   {
-    accessorKey: "Closed On",
+    accessorKey: "closedOn",
     header: () => (
       <div className="px-4 py-2 text-center font-semibold">
         {mounted ? (

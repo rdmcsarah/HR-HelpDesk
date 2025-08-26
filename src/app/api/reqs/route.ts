@@ -303,7 +303,7 @@ export async function PUT(request: Request) {
       ...(replyDocumentUrl && { replyDocumentUrl }),
       // adminId, // Track which admin made the update
       closedAt:
-        status?.toUpperCase() === "COMPLETED"
+        status?.toUpperCase() === "COMPLETED"|| status?.toUpperCase() === "REJECTED"
           ? new Date()
           : existingRequest.closedAt,
     };

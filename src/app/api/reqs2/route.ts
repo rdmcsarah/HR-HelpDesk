@@ -379,6 +379,10 @@ export async function PUT(request: Request) {
           status,
           replyDocumentUrl,
           ...(replydocumentUrlNew !== null && { replydocumentUrlNew }), // Only include if not null          closedAt: new Date(),
+          closedAt:
+            status?.toUpperCase() === "COMPLETED" || status?.toUpperCase() === "REJECTED"
+              ? new Date()
+              : null,
         };
       }
     }

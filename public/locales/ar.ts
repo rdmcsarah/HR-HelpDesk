@@ -6,13 +6,16 @@ export default {
     MyRequest: "طلبي",
     welcome: "مرحبًا",
     about: "معلومات عنا",
+    requester: "مقدم الطلب",
     home: "الرئيسية",
+    Request: "طلب",
     changeLanguage: "تغيير اللغة",
     english: "الإنجليزية",
     optional: "اختياري",
 maxLengthReached: "لقد وصلت إلى الحد الأقصى من 500 حرفًا.",
-
+empId: "معرف الموظف",
     french: "الفرنسية",
+    EmployeeId: "معرف الموظف",
     arabic: "العربية",
     closureTime: "وقت الإغلاق (أيام)",
     siteTitle: "عرض توضيحي للترجمة في Next.js",
@@ -279,348 +282,845 @@ double_click_to_view_details: "انقر نقرًا مزدوجًا لعرض ال�
     No_requests_found: "لم يتم العثور على طلبات.",
 
 
+     "HR Director": "مدير الموارد البشرية",
+    "Supply Chain & Procurement Manager": "مدير سلسلة التوريد والمشتريات",
+    "Technical Director": "مدير فني",
+    "Personnel Manager": "مدير شؤون الموظفين",
+    "Rolling Stock Manager": "مدير подвижного состава",
+    "Operations Engineering Manager": "مدير هندسة العمليات",
+    "Operations Performance & Safety Manager": "مدير أداء وسلامة العمليات",
+    "Principal Translator": "المترجم الرئيسي",
+    "Handover & Support Engineer": "مهندس تسليم ودعم",
+    "Building & Facility Management Lead Engineer": "المهندس الرئيسي لإدارة المباني والمرافق",
+    "Head of AFC": "رئيس قسم AFC",
+    "Head of Depot Equipment": "رئيس قسم معدات الوديعة",
+    "Deputy Managing Director": "نائب المدير الإداري",
+    "OCC Manager": "مدير مركز التحكم العملياتي (OCC)",
+    "OHSE Manager": "مدير الصحة والسلامة والبيئة (OHSE)",
+    "Training & Development Officer": "مسؤول التدريب والتطوير",
+    "Document Control Supervisor": "مشرف مراقبة الوثائق",
+    "Zone Head": "رئيس المنطقة",
+    "Building & Facility Management Manager": "مدير إدارة المباني والمرافق",
+    "Sr Training & Development Officer": "مسؤول أول للتدريب والتطوير",
+    "IMS & Quality Manager": "مدير نظام الإدارة المتكاملة والجودة",
+    "Head Of Safety Delivery": "رئيس قسم تسليم السلامة",
+    "CMS Development Manager": "مدير تطوير نظام إدارة الصيانة (CMS)",
+    "Planning & Audit Manager": "مدير التخطيط والمراجعة",
+    "Sr Project Engineer": "مهندس مشاريع أول",
+    "Process & Reporting Manager": "مدير العمليات وإعداد التقارير",
+    "Transport Manager": "مدير النقل",
+    "Managing Director": "المدير الإداري",
+    "Telecom & AFC Lead Engineer": "المهندس الرئيسي للاتصالات و AFC",
+    "Sr Talent Acquisition Officer": "مسؤول اكتساب المواهب الأول",
+    "Performance & Risk Manager": "مدير الأداء والمخاطر",
+    "Head Of Planning & Scheduling": "رئيس قسم التخطيط والجدولة",
+    "HVAC Mechanical Engineer": "مهندس ميكانيكي HVAC",
+    "Sr Payroll Officer": "مسؤول رواتب أول",
+    "Sr MEP Lead Engineer": "المهندس الرئيسي الأول MEP",
+    "HR Generalist": "أخصائي موارد بشرية عام",
+    "HSE Supervisor": "مشرف الصحة والسلامة والبيئة",
+    "Sr Rolling Stock Engineer": "مهندس подвижного состава أول",
+    "Head of Telecom": "رئيس قسم الاتصالات",
+    "Training & CMS Lead": "قائد التدريب ونظام إدارة الصيانة",
+    "Sr Budget & Controlling Specialist": "أخصائي ميزانية ورقابة أول",
+    "IT Specialist": "أخصائي تكنولوجيا المعلومات",
+    "Deputy Infrastructure Manager": "نائب مدير البنية التحتية",
+    "Asset Management Engineer": "مهندس إدارة الأصول",
+    "Sr Signaling Engineer": "مهندس إشارات أول",
+    "CMMS & Data Engineering Manager": "مدير هندسة CMMS والبيانات",
+    "Sr Supply Chain & Stock Engineer": "مهندس سلسلة توريد ومخزون أول",
+    "Head of Power Supply": "رئيس قسم توريد الطاقة",
+    "Rolling Stock Engineer": "مهندس подвижного состава",
+    "Contracts Manager": "مدير العقود",
+    "Customer Service Interface Manager": "مدير واجهة خدمة العملاء",
+    "Deputy Operations Director": "نائب مدير العمليات",
+    "Chief Operating Officer": "chief operating officer",
+    "Investigation & Audit Manager": "مدير التحقيقات والمراجعة",
+    "Fraud Control Manager": "مدير مكافحة الاحتيال",
+    "Communications Manager": "مدير الاتصالات",
+    "Stakeholders Director": "مدير أصحاب المصلحة",
+    "Head of Operations Data & Investigation": "رئيس بيانات العمليات والتحقيق",
+    "Systems Manager": "مدير النظم",
+    "Sr Track Engineer": "مهندس مسارات أول",
+    "Talent Acquisition Team Leader": "قائد فريق اكتساب المواهب",
+    "Support Functions IS Manager": "مدير نظم معلومات وظائف الدعم",
+    "Stakeholders Manager": "مدير أصحاب المصلحة",
+    "Head of Digital": "رئيس القسم الرقمي",
+    "Revenue Manager": "مدير الإيرادات",
+    "Security Expert": "خبير أمن",
+    "Compensation & Benefits Manager": "مدير التعويضات والمزايا",
+    "IT Services Team Leader": "قائد فريق خدمات تكنولوجيا المعلومات",
+    "Network Engineer": "مهندس شبكات",
+    "CMMS Engineer": "مهندس CMMS",
+    "Logistics Support Officer": "مسؤول دعم اللوجستيات",
+    "Zone Manager": "مدير المنطقة",
+    "HR Business Partner": "شريك أعمال الموارد البشرية",
+    "Accounting Supervisor": "مشرف المحاسبة",
+    "HSE Delivery Manager": "مدير تسليم الصحة والسلامة والبيئة",
+    "OCC Duty Chief Controller": "chief controller",
+    "Logistics & Warehouses Manager": "مدير اللوجستيات والمستودعات",
+    "Driving Lead Engineer": "المهندس الرئيسي للقيادة",
+    "Jr SOC Engineer": "مهندس SOC مبتدئ",
+    "Deputy Security Expert": "نائب الخبير الأمني",
+    "Finance Director": "مدير المالية",
+    "Operational Railway Safety Manager": "مدير سلامة السكك الحديدية التشغيلية",
+    "Regulation & Documentation Manager": "مدير التنظيم والتوثيق",
+    "Training & Development Manager": "مدير التدريب والتطوير",
+    "Track Manager": "مدير المسارات",
+    "MEP Manager": "مدير MEP",
+    "Head of IT Infrastructure": "رئيس البنية التحتية لتكنولوجيا المعلومات",
+    "Maintenance Monitoring Manager": "مدير مراقبة الصيانة",
+    "Line Manager": "مدير الخط",
+    "Planning & Scheduling Manager": "مدير التخطيط والجدولة",
+    "Customer Information Supervisor": "مشرف معلومات العملاء",
+    "MCC Engineer": "مهندس MCC",
+    "Customer Service Manager": "مدير خدمة العملاء",
+    "Operations Director": "مدير العمليات",
+    "Jr Zone Manager": "مدير منطقة مبتدئ",
+    "Customer Information Officer": "مسؤول معلومات العملاء",
+    "Operations Training Coordinator": "منسق تدريب العمليات",
+    "Dispatching Officer": "مسؤول إرسال",
+    "Sr Procurement Officer": "مسؤول مشتريات أول",
+    "General Services Specialist": "أخصائي خدمات عامة",
+    "Passengers Information Manager": "مدير معلومات الركاب",
+    "Quality Controller": "مراقب الجودة",
+    "Sr Telecom Engineer": "مهندس اتصالات أول",
+    "Telecom Engineer": "مهندس اتصالات",
+    "PR & Communications Lead": "قائد العلاقات العامة والاتصالات",
+    "Sr Tendering Officer": "مسؤول مناقصات أول",
+    "Maintenance Monitoring Engineer": "مهندس مراقبة الصيانة",
+    "Scheduling Engineer": "مهندس جدولة",
+    "Admin & DC Assistant": "مساعد إداري ومركز وثائق",
+    "Head of Centralized Control": "رئيس التحكم المركزي",
+    "LRT Driver": "سائق LRT",
+    "OCC Controller": "مراقب OCC",
+    "Shunting Driver": "سائق المناورة",
+    "Driving Supervisor": "مشرف القيادة",
+    "Regulation & Documentation Engineer": "مهندس تنظيم وتوثيق",
+    "Strategy & Development Manager": "مدير الاستراتيجية والتطوير",
+    "Rolling Stock Technician": "فني подвижного состава",
+    "Sr Social Media Specialist": "أخصائي وسائل تواصل اجتماعي أول",
+    "Metro Driver": "سائق مترو",
+    "Railway Operations Master": "أستاذ عمليات السكك الحديدية",
+    "Sales Agent": "وكيل مبيعات",
+    "Jr Planning Officer": "مسؤول تخطيط مبتدئ",
+    "Mainline Supervisor": "مشرف الخط الرئيسي",
+    "Operations Training Engineer": "مهندس تدريب العمليات",
+    "Station Master": "رئيس المحطة",
+    "Public Relations Manager": "مدير العلاقات العامة",
+    "Sr Projects & Planning Engineer": "مهندس مشاريع وتخطيط أول",
+    "Power Supply Technician": "فني توريد الطاقة",
+    "Civil Technician": "فني مدني",
+    "Head of Asset Management": "رئيس إدارة الأصول",
+    "Electric Low Voltage Technician": "فني كهرباء الجهد المنخفض",
+    "Track Technician": "فني مسارات",
+    "Stock Assistant": "مساعد مخزون",
+    "Revenue Assistant": "مساعد إيرادات",
+    "Station Accountant": "محاسب المحطة",
+    "Training & Assessment Officer": "مسؤول التدريب والتقييم",
+    "Power Supply Supervisor": "مشرف توريد الطاقة",
+    "Centralized Control Engineer": "مهندس تحكم مركزي",
+    "Sr Operations Training Engineer": "مهندس تدريب عمليات أول",
+    "Operations Data & Investigation Supervisor": "مشرف بيانات وتحقيقات العمليات",
+    "Deputy HSE Manager": "نائب مدير الصحة والسلامة والبيئة",
+    "Signaling Technician": "فني إشارات",
+    "Escalators & Elevators Technician": "فني سلالم متحركة ومصاعد",
+    "Control & Security Supervisor": "مشرف التحكم والأمن",
+    "Service Provider Interface Manager": "مدير واجهة مزود الخدمة",
+    "AFC Technician": "فني AFC",
+    "Telecom Technician": "فني اتصالات",
+    "Centralized Control Technician": "فني تحكم مركزي",
+    "Head of Mainline": "رئيس الخط الرئيسي",
+    "Track Supervisor": "مشرف المسارات",
+    "Track Engineer": "مهندس مسارات",
+    "Sales Leader": "قائد المبيعات",
+    "Planning Officer": "مسؤول تخطيط",
+    "Mechanical Technician": "فني ميكانيكا",
+    "PTW Engineer": "مهندس PTW",
+    "Work Permits Supervisor": "مشرف تصاريح العمل",
+    "Head of Marketing & Customer Experience": "رئيس التسويق وتجربة العملاء",
+    "Fraud Controller": "مراقب الاحتيال",
+    "Mechanical Supervisor": "مشرف ميكانيكا",
+    "Customer Service Agent": "وكيل خدمة العملاء",
+    "Stakeholders Coordinator": "منسق أصحاب المصلحة",
+    "Quality Investigator Team Leader": "قائد فريق محققين الجودة",
+    "Safe Keeper": "حافظ الآمان",
+    "Electrical Supervisor": "مشرف كهرباء",
+    "Sr HVAC Engineer": "مهندس HVAC أول",
+    "Project Engineer": "مهندس مشاريع",
+    "Maintenance Monitoring Lead Engineer": "المهندس الرئيسي لمراقبة الصيانة",
+    "Controller": "مراقب",
+    "Stock Officer": "مسؤول مخزون",
+    "Graphic Designer": "مصمم جرافيك",
+    "Treasury Manager": "مدير الخزينة",
+    "Railway Safety Supervisor": "مشرف سلامة السكك الحديدية",
+    "Jr Planning & Scheduling Engineer": "مهندس تخطيط وجدولة مبتدئ",
+    "Jr Regulation & Documentation Engineer": "مهندس تنظيم وتوثيق مبتدئ",
+    "Sr Accountant": "محاسب أول",
+    "Revenue Cashier": "أمين صندوق الإيرادات",
+    "Logistics & Warehouses Supervisor": "مشرف اللوجستيات والمستودعات",
+    "Track Assistant Technician": "فني مساعد مسارات",
+    "Sr Power Supply Engineer": "مهندس توريد طاقة أول",
+    "Sr Railway Infrastructure Lead Engineer": "المهندس الرئيسي الأول للبنية التحتية للسكك الحديدية",
+    "Logistics & Warehouses Assistant Technician": "فني مساعد لوجستيات ومستودعات",
+    "Building & Facility Management Technician": "فني إدارة المباني والمرافق",
+    "General Services Manager": "مدير الخدمات العامة",
+    "Fire Safety Manager": "مدير السلامة من الحرائق",
+    "Electrical Technician": "فني كهرباء",
+    "BMS Supervisor": "مشرف BMS",
+    "Sr BMS Engineer": "مهندس BMS أول",
+    "Civil Supervisor": "مشرف مدني",
+    "Civil Engineer": "مهندس مدني",
+    "Marketing & Customer Experience Manager": "مدير التسويق وتجربة العملاء",
+    "Rolling Stock Supervisor": "مشرف подвижного состава",
+    "Depot Manager": "مدير الوديعة",
+    "Sr Rolling Stock Technician": "فني подвижного состава أول",
+    "Accountant": "محاسب",
+    "Head of MCC": "رئيس MCC",
+    "Sr Cyber Security Engineer": "مهندس أمن سيبراني أول",
+    "Mechanical Assistant Technician": "فني مساعد ميكانيكا",
+    "Electrical Assistant Technician": "فني مساعد كهرباء",
+    "Signaling Supervisor": "مشرف إشارات",
+    "Building & Facility Management Engineer": "مهندس إدارة المباني والمرافق",
+    "Logistics & Warehouses Technician": "فني لوجستيات ومستودعات",
+    "Department Support Officer": "مسؤول دعم القسم",
+    "Financial Planning & Analysis Manager": "مدير التخطيط والتحليل المالي",
+    "Cyber Security GRC Engineer": "مهندس أمن سيبراني GRC",
+    "Talent Acquisition Manager": "مدير اكتساب المواهب",
+    "Head of Heavy Maintenance": "رئيس الصيانة الثقيلة",
+    "Infrastructure Manager": "مدير البنية التحتية",
+    "Sr Performance Analyst": "محلل أداء أول",
+    "Executive Assistant": "مساعد تنفيذي",
+    "Building & Facility Management Assistant Technician": "فني مساعد إدارة المباني والمرافق",
+    "Firefighting & Dewatering Technician": "فني مكافحة حرائق وإزالة مياه",
+    "Data Protection Officer": "مسؤول حماية البيانات",
+    "Jr Application Support Specialist": "أخصائي دعم تطبيقات مبتدئ",
+    "Jr Cyber Security Engineer": "مهندس أمن سيبراني مبتدئ",
+    "Compliance Officer": "مسؤول الامتثال",
+    "X-Ray Machine Officer": "مسؤول جهاز الأشعة السينية",
+    "AFC Engineer": "مهندس AFC",
+    "Quality & Continuous Improvement Supervisor": "مشرف الجودة والتحسين المستمر",
+    "HR Coordinator": "منسق موارد بشرية",
+    "Quality Investigator": "محقق جودة",
+    "Data Engineer": "مهندس بيانات",
+    "Maintenance Director": "مدير الصيانة",
+    "Commercial Lead": "قائد تجاري",
+    "Jr Translator": "مترجم مبتدئ",
+    "Security Device Technician": "فني أجهزة أمن",
+    "Passenger Information & Production Assistant": "مساعد معلومات الركاب والإنتاج",
+    "Escalators & Elevators Engineer": "مهندس سلالم متحركة ومصاعد",
+    "Jr Telecom Engineer": "مهندس اتصالات مبتدئ",
+    "Client’s Relationship Supervisor": "مشرف علاقات العملاء",
+    "Sr Supply Chain Excellence Supervisor": "مشرف تميز سلسلة التوريد أول",
+    "Rolling Stock Lead Engineer": "المهندس الرئيسي للعربات المتحركة",
+    "Jr Rolling Stock Engineer": "مهندس подвижного состава مبتدئ",
+    "Office Assistant": "مساعد مكتب",
+    "Sr Escalators & Elevators Engineer": "مهندس سلالم متحركة ومصاعد أول",
+    "Signaling Engineer": "مهندس إشارات",
+    "Quality Investigator Supervisor": "مشرف محققين الجودة",
+    "Sr Quality & Continuous Improvement Supervisor": "مشرف جودة وتحسين مستمر أول",
+    "Depot Equipment Operator": "مشغل معدات الوديعة",
+    "WLSB Controller": "مراقب WLSB",
+    "Jr Operations Training Engineer": "مهندس تدريب عمليات مبتدئ",
+    "Document Controller": "مراقب وثائق",
+    "Fire Safety Supervisor": "مشرف السلامة من الحرائق",
+    "General Services Supervisor": "مشرف خدمات عامة",
+    "Jr Data Specialist": "أخصائي بيانات مبتدئ",
+    "Jr Building & Facility Management Engineer": "مهندس إدارة مباني ومرافق مبتدئ",
+    "Sr Firefighting & Dewatering Engineer": "مهندس مكافحة حرائق وإزالة مياه أول",
+    "Performance Analyst": "محلل أداء",
+    "Rolling Stock Assistant Technician": "فني مساعد подвижного состава",
+    "Sr Content Specialist": "أخصائي محتوى أول",
+    "Applications Analyst": "محلل تطبيقات",
+    "Civil Assistant Technician": "فني مساعد مدني",
+    "Marketing & Customer Experience Officer": "مسؤول التسويق وتجربة العملاء",
+    "LRT Driver Trainee": "متدرب سائق LRT",
+    "Rolling Stock Process Engineer": "مهندس عمليات подвижного состава",
+    "Depot Equipment Lead Engineer": "المهندس الرئيسي لمعدات الوديعة",
+    "Jr Systems Administrator": "مسؤول نظم مبتدئ",
+    "Security Inspector": "مفتش أمن",
+    "BMS Technician": "فني BMS",
+    "Power Supply Engineer": "مهندس توريد الطاقة",
+    "SOC Engineer": "مهندس SOC",
+    "Material & Inventory Control Analyst": "محلل مراقبة المواد والمخزون",
+    "BMS Engineer": "مهندس BMS",
+    "Data Scientist": "عالم بيانات",
+    "Jr Asset Management Engineer": "مهندس إدارة أصول مبتدئ",
+    "Jr OCC Controller": "مراقب OCC مبتدئ",
+    "MCC Supervisor": "مشرف MCC",
+    "Procurement Engineer": "مهندس مشتريات",
+    "Logistics Officer Assistant": "مساعد مسؤول لوجستيات",
+    "Operations Coordinator": "منسق عمليات",
+    "Sr Procurement Engineer": "مهندس مشتريات أول",
+    "Asset Documentation & Survey Assistant": "مساعد توثيق ومسح الأصول",
+    "Jr Treasury Officer": "مسؤول خزينة مبتدئ",
+    "Jr Contracts Engineer": "مهندس عقود مبتدئ",
+    "Jr Talent Acquisition Officer": "مسؤول اكتساب مواهب مبتدئ",
+    "Compliance Officer Assistant": "مساعد مسؤول الامتثال",
+    "IT Helpdesk Administrator": "مسؤول مكتب مساعدة تكنولوجيا المعلومات",
+    "Signaling & CC Lead Engineer": "المهندس الرئيسي للإشارات والتحكم المركزي",
+    "Jr AFC Engineer": "مهندس AFC مبتدئ",
+    "Jr Centralized Control Engineer": "مهندس تحكم مركزي مبتدئ",
+    "Railway Production Lead": "قائد إنتاج السكك الحديدية",
+    "Sign Language Specialist": "أخصائي لغة إشارة",
+    "Electronic Maintenance Technician": "فني صيانة إلكترونية",
+    "Maintenance Engineering Manager": "مدير هندسة الصيانة",
+    "Jr Track Engineer": "مهندس مسارات مبتدئ",
+    "Electric Low Voltage Engineer": "مهندس كهرباء الجهد المنخفض",
+    "Metro Driver Trainee": "متدرب سائق مترو",
+    "Sr Graphic Designer": "مصمم جرافيك أول",
+    "Intern": "متدرب",
+    "Student": "طالب",
+    "PTW Supervisor": "مشرف PTW",
+    "COC Operator": "مشغل COC",
+    "Sr Regulation & Documentation Engineer": "مهندس تنظيم وتوثيق أول",
+    "Deputy Operations Engineering Manager": "نائب مدير هندسة العمليات",
+    "Procurement Officer": "مسؤول مشتريات",
+    "Supply Chain & Stock Analyst": "محلل سلسلة توريد ومخزون",
+    "Centralized Control Supervisor": "مشرف التحكم المركزي",
+    "Head of PTW": "رئيس قسم PTW",
+    "Operations Training Manager": "مدير تدريب العمليات",
+    "Electric Low Voltage Supervisor": "مشرف كهرباء الجهد المنخفض",
+    "Telecom Supervisor": "مشرف اتصالات",
+    "Payroll Officer": "مسؤول رواتب",
+    "Mainline Manager": "مدير الخط الرئيسي",
+    "Public Affairs Manager": "مدير الشؤون العامة",
+    "Station Controller": "مراقب المحطة",
+    "Deputy Rolling Stock Manager": "نائب مدير подвижного состава",
+    "Head of LRW": "رئيس قسم LRW",
+    "Logistic Support Officer": "مسؤول دعم لوجستي",
+    "Logistic Support Supervisor": "مشرف دعم لوجستي",
+    "Commercial Officer": "مسؤول تجاري",
+    "Audit Officer": "مسؤول مراجعة",
+    "Department Support Engineer": "مهندس دعم قسم",
+    "Sr PCP Supervisor": "مشرف PCP أول",
+    "Operational Railway Safety Coordinator": "منسق سلامة السكك الحديدية التشغيلية",
+    "Station Control Team Leader": "قائد فريق مراقبة المحطة",
+    "Software QA Analyst": "محلل ضمان جودة البرمجيات",
+    "Technical Project Lead": "قائد المشروع الفني",
+    "HR Supervisor": "مشرف موارد بشرية",
+    "Payroll Team Leader": "قائد فريق الرواتب",
+    "HR Support Specialist": "أخصائي دعم موارد بشرية",
+    "Staff Administration Manager": "مدير إدارة الموظفين",
+    "PCP Supervisor": "مشرف PCP",
+    "PCP Technician": "فني PCP",
+    "IT Manager": "مدير تكنولوجيا المعلومات",
+    "Training & Documentation Manager": "مدير التدريب والتوثيق",
+    "IT Support Supervisor": "مشرف دعم تكنولوجيا المعلومات",
+    "Head of Communications": "رئيس الاتصالات",
+    "Training & Documentation Supervisor": "مشرف التدريب والتوثيق",
+    "Internal Communications Officer": "مسؤول اتصالات داخلية",
+    "Cyber Security Manager": "مدير الأمن السيبراني",
+    "HR Officer": "مسؤول موارد بشرية",
+    "Training Officer": "مسؤول تدريب",
+    "VP North Africa BU AMENA": "نائب الرئيس شمال إفريقيا BU AMENA",
+    "Talent Acquisition Officer": "مسؤول اكتساب المواهب",
+    "Cultural Projects Manager": "مدير المشاريع الثقافية",
+    "Application Support Analyst": "محلل دعم التطبيقات",
+    "Information Systems Lead": "قائد نظم المعلومات",
+    "Communication & Content Lead": "قائد الاتصالات والمحتوى",
+    "Sr HR Officer": "مسؤول موارد بشرية أول",
+    "Jr HR Officer": "مسؤول موارد بشرية مبتدئ",
+    "Station Leader": "قائد المحطة",
+    "CCP Traffic Controller": "مراقب حركة المرور CCP",
+    "COC & Security Controller": "مراقب COC والأمن",
+    "CCP/WLSB Traffic Controller": "مراقب حركة المرور CCP/WLSB",
+    "Workshop LSB Controller": "مراقب ورشة LSB",
+    "Railway Operations Master – Depot": "أستاذ عمليات السكك الحديدية – الوديعة",
+    "Sr GRC Engineer": "مهندس GRC أول",
+    "Sr Cyber Security Technical Engineer": "مهندس فني أمن سيبراني أول",
+    "Operations & Data Manager": "مدير العمليات والبيانات",
+    "Business Process Manager": "مدير عمليات الأعمال",
+    "Power Supply Lead Engineer": "المهندس الرئيسي لتوريد الطاقة",
+    "CCP Officer": "مسؤول CCP",
+    "Budget Officer": "مسؤول ميزانية",
+    "Sr Budget Officer": "مسؤول ميزانية أول",
+    "Planning & Scheduling Engineer": "مهندس تخطيط وجدولة",
+    "CCP/WLSB Supervisor": "مشرف CCP/WLSB",
+    "Head of Logistics & Coordination": "رئيس اللوجستيات والتنسيق",
+    "Operations Expert": "خبير عمليات",
+    "OCC Supervisor": "مشرف OCC",
+    "CCP Manager": "مدير CCP",
+    "Technician": "فني",
+    "Head of Procurement & Supply Chain": "رئيس المشتريات وسلسلة التوريد",
+    "Testing & Commissioning Manager": "مدير الاختبار والتشغيل",
+    "Stations Manager": "مدير المحطات",
+    "Civil & Fire Protection Manager": "مدير الحماية المدنية ومكافحة الحرائق",
+    "Deputy Systems Manager": "نائب مدير النظم",
+    "Operational Railway Safety Supervisor": "مشرف سلامة السكك الحديدية التشغيلية",
+    "Fault Controller": "مراقب الأعطال",
+    "Drivers Scheduling Observer": "مراقب جدولة السائقين",
+    "Logistics Officer": "مسؤول لوجستيات",
+    "Supervisor": "مشرف",
+    "Maintenance Engineer": "مهندس صيانة",
+    "Head of Supply Chain": "رئيس سلسلة التوريد",
+    "Facility Management Technician": "فني إدارة المرافق",
+    "Supply Chain & Stock Technician": "فني سلسلة توريد ومخزون",
+    "AFC Supervisor": "مشرف AFC",
+    "Head of Light Maintenance": "رئيس الصيانة الخفيفة",
+    "Station FM & MEP Technician": "فني FM و MEP المحطة",
+    "Air Treatment Technician": "فني معالجة الهواء",
+    "Supervisory System Engineer": "مهندس نظام إشرافي",
+    "Chief Accountant": "chief accountant",
+    "Head of Inventory Management": "رئيس إدارة المخزون",
+    "Commercial Manager": "مدير تجاري",
+    "Performance Manager": "مدير الأداء",
+    "MCC Lead Engineer": "المهندس الرئيسي لـ MCC",
+    "CMMS & Data Engineer": "مهندس CMMS والبيانات",
+    "Inspection Engineer": "مهندس تفتيش",
+    "CMMS Administrator": "مسؤول CMMS",
+    "Security Supervisor": "مشرف أمن",
+    "Jr Accountant": "محاسب مبتدئ",
+    "X-Ray Machine officer": "مسؤول جهاز الأشعة السينية",
+    "Performance Management Director": "مدير إدارة الأداء",
+    "ESC-ELV Technician": "فني ESC-ELV",
+    "Workshop Equipment Technician": "فني معدات الورشة",
+    "HVAC Technician": "فني HVAC",
+    "Civil & Utility Engineer": "مهندس مدني ومرافق",
+    "Quality investigator": "محقق جودة",
+    "Depot Technician": "فني وديعة",
+    "Depot Driver": "سائق وديعة",
+    "Deputy Technical Director": "نائب المدير الفني",
+    "Railway Safety & HSQE Director": "مدير سلامة السكك الحديدية و HSQE",
+    "Tax & Treasury Manager": "مدير الضرائب والخزينة",
+    "Maintenance Manager": "مدير الصيانة",
+    "Project Leader": "قائد المشروع",
+    "Supply Chain & Stock Supervisor": "مشرف سلسلة توريد ومخزون",
+    "Supply Chain & Stock Assistant": "مساعد سلسلة توريد ومخزون",
+    "Contracts Engineer": "مهندس عقود",
+    "Application Support Coordinator": "منسق دعم التطبيقات",
+    "Training & Documentation Engineer": "مهندس تدريب وتوثيق",
+    "Project Director": "مدير المشروع",
+    "Project Financial Controller": "مراقب مالي للمشروع",
+    "Accounting & Reporting Manager": "مدير المحاسبة وإعداد التقارير",
+    "IT Project Manager": "مدير مشروع تكنولوجيا المعلومات",
+    "Training & Assessment Manager": "مدير التدريب والتقييم",
+    "Administrative Manager": "مدير إداري",
+    "Treasury Assistant": "مساعد خزينة",
+    "AFC Lead Engineer": "المهندس الرئيسي لـ AFC",
+    "IS Business Analyst": "محلل أعمال نظم المعلومات",
+    "Project Assistant": "مساعد مشروع",
+    "Treasury Officer": "مسؤول خزينة",
+    "Tax Officer": "مسؤول ضرائب",
+    "Procurement Manager": "مدير المشتريات",
+    "Head of Marketing": "رئيس التسويق",
+    "Budget Manager": "مدير الميزانية",
+    "IT Infrastructure Projects Manager": "مدير مشاريع البنية التحتية لتكنولوجيا المعلومات",
+    "Sr Importation Officer": "مسؤول استيراد أول",
+    "Translator": "مترجم",
+    "Facility Management Engineer": "مهندس إدارة المرافق",
+    "Risk Advisor": "مستشار مخاطر",
+    "Training & Development Lead": "قائد التدريب والتطوير",
+    "Operations Systems Lead Engineer": "المهندس الرئيسي لأنظمة العمليات",
+    "Business Applications Analyst": "محلل تطبيقات الأعمال",
+    "Material & Inventory Analyst": "محلل مواد ومخزون",
+    "Civil & Utility Technician": "فني مدني ومرافق",
+    "Procurement Admin & Expeditor": "مسؤول مشتريات ومنسق",
+    "Procurement Representative": "ممثل المشتريات",
+    "Air treatment Assistant Technician": "فني مساعد معالجة هواء",
+    "X-Ray Engineer": "مهندس أشعة سينية",
+    "Security Device Engineer": "مهندس أجهزة أمن",
+    "Rolling Stock Maintainer": "فني صيانة подвижного состава",
+    "Civil & Utility Assistant Technician": "فني مساعد مدني ومرافق",
+    "HVAC Engineer": "مهندس HVAC",
+    "Control & Security Manager": "مدير التحكم والأمن",
+    "Full Stack Software Engineer": "مهندس برمجيات Full Stack",
+    "Advisor to Managing Director": "مستشار المدير الإداري",
+    "Transport Supervisor": "مشرف نقل",
+    "Head of Drivers": "رئيس السائقين",
+    "Station Manager": "مدير المحطة",
+    "Railway Safety Manager": "مدير سلامة السكك الحديدية",
+    "Auditor": "مراجع",
+    "Workshop Equipment Engineer": "مهندس معدات الورشة",
+    "Handover Manager": "مدير التسليم",
+    "Track Maintenance Engineer": "مهندس صيانة المسارات",
+    "Track & Third Rail Lead Engineer": "المهندس الرئيسي للمسارات والقضيب الثالث",
+    "Track Maintenance Manager": "مدير صيانة المسارات",
+    "Track Maintenance Technician": "فني صيانة المسارات",
+    "Track Maintainer": "فني صيانة المسارات",
+    "Head of Track": "رئيس المسارات",
+    "Tunnel Ventilation System Engineer": "مهندس نظام تهوية الأنفاق",
+    "X-Ray Technician": "فني أشعة سينية",
+    "Sr OCC Supervisor": "مشرف OCC أول",
+    "Labourer": "عامل",
+    "General Ledger Supervisor": "مشرف دفتر الأستاذ العام",
+    "Site Manager": "مدير الموقع",
+    "Deputy CS Director -Territories": "نائب مدير CS - الأقاليم",
+    "Railway Safety Director": "مدير سلامة السكك الحديدية",
+    "Sr CMMS Engineer": "مهندس CMMS أول",
+    "Deputy CS Director - Marketing & Communication": "نائب مدير CS - التسويق والاتصالات",
+    "IT/OT Manager": "مدير IT/OT",
+    "Digitalization Assistant": "مساعد رقمنة",
+    "Jr CCP/WLSB Traffic Controller": "مراقب حركة مرور CCP/WLSB مبتدئ",
+    "General & Cost Accountant": "محاسب عام وتكاليف",
+    "Maintenance Monitoring Technician": "فني مراقبة الصيانة",
+    "Jr Signaling Engineer": "مهندس إشارات مبتدئ",
+    "Contracts Director": "مدير العقود",
+    "Track Lead Engineer": "المهندس الرئيسي للمسارات",
+    "Customer Service Director": "مدير خدمة العملاء",
+    "Chief Financial Officer": "chief financial officer",
+    "Planning & Scheduling Supervisor": "مشرف التخطيط والجدولة",
+    "Station FM & MEP Engineer": "مهندس FM و MEP المحطة",
+    "Deputy Customer Service Director": "نائب مدير خدمة العملاء",
+    "Head of Civil/MEP/FF": "رئيس المدني / MEP / FF",
+    "Assets & Configuration Manager": "مدير الأصول والتكوين",
+    "Head of Signaling / TSP": "رئيس الإشارات / TSP",
+    "Head of Projects & Extensions": "رئيس المشاريع والامتدادات",
+    "Sr Contracts Engineer": "مهندس عقود أول",
+    "Compensation & Benefits/HRIS Manager": "مدير التعويضات والمزايا/نظم معلومات الموارد البشرية",
+    "Business Applications Manager": "مدير تطبيقات الأعمال",
+    "IT Infrastructure & Service Delivery Manager": "مدير البنية التحتية لتكنولوجيا المعلومات وتقديم الخدمات",
+    "Deputy HSQE Director & Railway Safety Expert": "نائب مدير HSQE وخبير سلامة السكك الحديدية",
+    "Head of Signalling": "رئيس الإشارات",
+    "Data Analysis Supervisor": "مشرف تحليل البيانات",
+    "Stock Supervisor": "مشرف مخزون",
+    "Marketing & Communications Coordinator": "منسق التسويق والاتصالات",
+    "Sr Marketing & Customer Experience Officer": "مسؤول تسويق وتجربة عملاء أول",
+    "Sr Civil Engineer": "مهندس مدني أول",
+    "Junior Software Developer": "مطور برمجيات مبتدئ",
+    "Head of Stations": "رئيس المحطات",
+    "Electromechanical Engineer": "مهندس كهروميكانيكي",
  
  
  
  
  
  
- 
-  "Accountant": "محاسب",
-  "Accounting Supervisor": "مشرف محاسبة",
-  "Admin & DC Assistant": "مساعد إداري ومركز توزيع",
-  "AFC Engineer": "مهندس AFC",
-  "AFC Supervisor": "مشرف AFC",
-  "AFC Technician": "فني AFC",
-  "Applications Analyst": "محلل تطبيقات",
-  "Asset Documentation & Survey Assistant": "مساعد توثيق ومسح الأصول",
-  "Asset Management Engineer": "مهندس إدارة الأصول",
-  "Audit Officer": "ضابط مراجعة",
-  "BMS Engineer": "مهندس BMS",
-  "BMS Supervisor": "مشرف BMS",
-  "BMS Technician": "فني BMS",
-  "Building & Facility Management Assistant Technician": "فني مساعد إدارة المباني والمرافق",
-  "Building & Facility Management Engineer": "مهندس إدارة المباني والمرافق",
-  "Building & Facility Management Lead Engineer": "المهندس الرئيسي لإدارة المباني والمرافق",
-  "Building & Facility Management Manager": "مدير إدارة المباني والمرافق",
-  "Building & Facility Management Technician": "فني إدارة المباني والمرافق",
-  "Centralized Control Engineer": "مهندس التحكم المركزي",
-  "Centralized Control Supervisor": "مشرف التحكم المركزي",
-  "Centralized Control Technician": "فني التحكم المركزي",
-  "Chief Operating Officer": "الرئيس التنفيذي للعمليات",
-  "Civil Assistant Technician": "فني مدني مساعد",
-  "Civil Engineer": "مهندس مدني",
-  "Civil Supervisor": "مشرف مدني",
-  "Civil Technician": "فني مدني",
-  "Client’s Relationship Supervisor": "مشرف علاقات العملاء",
-  "CMMS & Data Engineering Manager": "مدير CMMS وهندسة البيانات",
-  "CMMS Engineer": "مهندس CMMS",
-  "CMS Development Manager": "مدير تطوير CMS",
-  "COC Operator": "مشغل COC",
-  "Commercial Lead": "رئيس التجارية",
-  "Commercial Officer": "ضابط تجاري",
-  "Communications Manager": "مدير الاتصالات",
-  "Compensation & Benefits Manager": "مدير التعويضات والمزايا",
-  "Compliance Officer": "ضابط الامتثال",
-  "Compliance Officer Assistant": "مساعد ضابط الامتثال",
-  "Contracts Manager": "مدير العقود",
-  "Control & Security Manager": "مدير التحكم والأمن",
-  "Control & Security Supervisor": "مشرف التحكم والأمن",
-  "Controller": "مراقب",
-  "Customer Information Officer": "ضابط معلومات العملاء",
-  "Customer Information Supervisor": "مشرف معلومات العملاء",
-  "Customer Service Agent": "وكيل خدمة العملاء",
-  "Customer Service Interface Manager": "مدير واجهة خدمة العملاء",
-  "Customer Service Manager": "مدير خدمة العملاء",
-  "Cyber Security GRC Engineer": "مهندس أمن سيبراني GRC",
-  "Data Analysis Supervisor": "مشرف تحليل البيانات",
-  "Data Engineer": "مهندس بيانات",
-  "Data Protection Officer": "ضابط حماية البيانات",
-  "Data Scientist": "عالم بيانات",
-  "Department Support Engineer": "مهندس دعم الإدارات",
-  "Department Support Officer": "ضابط دعم الإدارات",
-  "Depot Equipment Lead Engineer": "المهندس الرئيسي لمعدات المستودع",
-  "Depot Equipment Operator": "مشغل معدات المستودع",
-  "Depot Manager": "مدير المستودع",
-  "Deputy HSE Manager": "نائب مدير الصحة والسلامة والبيئة",
-  "Deputy Infrastructure Manager": "نائب مدير البنية التحتية",
-  "Deputy Managing Director": "نائب المدير العام",
-  "Deputy Operations Director": "نائب مدير العمليات",
-  "Deputy Operations Engineering Manager": "نائب مدير هندسة العمليات",
-  "Deputy Rolling Stock Manager": "نائب مدير عربات السكك الحديدية",
-  "Deputy Security Expert": "نائب الخبير الأمني",
-  "Dispatching Officer": "ضابط إرسال",
-  "Document Control Supervisor": "مشرف مراقبة الوثائق",
-  "Document Controller": "مراقب الوثائق",
-  "Driving Lead Engineer": "المهندس الرئيسي للقيادة",
-  "Driving Supervisor": "مشرف القيادة",
-  "Electric Low Voltage Engineer": "مهندس كهرباء منخفضة الجهد",
-  "Electric Low Voltage Supervisor": "مشرف كهرباء منخفضة الجهد",
-  "Electric Low Voltage Technician": "فني كهرباء منخفضة الجهد",
-  "Electrical Assistant Technician": "فني كهربائي مساعد",
-  "Electrical Supervisor": "مشرف كهربائي",
-  "Electrical Technician": "فني كهربائي",
-  "Electronic Maintenance Technician": "فني صيانة إلكترونية",
-  "Escalators & Elevators Engineer": "مهندس سلالم متحركة ومصاعد",
-  "Escalators & Elevators Technician": "فني سلالم متحركة ومصاعد",
-  "Executive Assistant": "مساعد تنفيذي",
-  "Finance Director": "مدير المالية",
-  "Financial Planning & Analysis Manager": "مدير التخطيط المالي والتحليل",
-  "Fire Safety Manager": "مدير السلامة من الحرائق",
-  "Fire Safety Supervisor": "مشرف السلامة من الحرائق",
-  "Firefighting & Dewatering Technician": "فني مكافحة الحرائق وإزالة المياه",
-  "Fraud Control Manager": "مدير مكافحة الاحتيال",
-  "Fraud Controller": "مراقب الاحتيال",
-  "General Services Manager": "مدير الخدمات العامة",
-  "General Services Specialist": "أخصائي خدمات عامة",
-  "General Services Supervisor": "مشرف خدمات عامة",
-  "Graphic Designer": "مصمم جرافيك",
-  "Handover & Support Engineer": "مهندس تسليم ودعم",
-  "Head of AFC": "رئيس AFC",
-  "Head of Asset Management": "رئيس إدارة الأصول",
-  "Head of Centralized Control": "رئيس التحكم المركزي",
-  "Head of Depot Equipment": "رئيس معدات المستودع",
-  "Head of Digital": "رئيس الرقمية",
-  "Head of Heavy Maintenance": "رئيس الصيانة الثقيلة",
-  "Head of IT Infrastructure": "رئيس البنية التحتية لتكنولوجيا المعلومات",
-  "Head of LRW": "رئيس LRW",
-  "Head of Mainline": "رئيس الخط الرئيسي",
-  "Head of Marketing & Customer Experience": "رئيس التسويق وتجربة العملاء",
-  "Head of MCC": "رئيس MCC",
-  "Head of Operations Data & Investigation": "رئيس بيانات العمليات والتحقيق",
-  "Head Of Planning & Scheduling": "رئيس التخطيط والجدولة",
-  "Head of Power Supply": "رئيس إمدادات الطاقة",
-  "Head of PTW": "رئيس PTW",
-  "Head Of Safety Delivery": "رئيس تسليم السلامة",
-  "Head of Telecom": "رئيس الاتصالات",
-  "HR Business Partner": "شريك أعمال الموارد البشرية",
-  "HR Coordinator": "منسق الموارد البشرية",
-  "HR Director": "مدير الموارد البشرية",
-  "HR Generalist": "أخصائي موارد بشرية عام",
-  "HR Officer": "ضابط موارد بشرية",
-  "HR Supervisor": "مشرف موارد بشرية",
-  "HR Support Specialist": "أخصائي دعم الموارد البشرية",
-  "HSE Delivery Manager": "مدير تسليم الصحة والسلامة والبيئة",
-  "HSE Supervisor": "مشرف الصحة والسلامة والبيئة",
-  "HVAC Mechanical Engineer": "مهندس ميكانيكي HVAC",
-  "IMS & Quality Manager": "مدير IMS والجودة",
-  "Infrastructure Manager": "مدير البنية التحتية",
-  "Intern": "متدرب",
-  "Investigation & Audit Manager": "مدير التحقيق والمراجعة",
-  "IT Helpdesk Administrator": "مسؤول مكتب مساعدة تكنولوجيا المعلومات",
-  "IT Services Team Leader": "قائد فريق خدمات تكنولوجيا المعلومات",
-  "IT Specialist": "أخصائي تكنولوجيا المعلومات",
-  "Jr AFC Engineer": "مهندس AFC مبتدئ",
-  "Jr Application Support Specialist": "أخصائي دعم التطبيقات مبتدئ",
-  "Jr Asset Management Engineer": "مهندس إدارة أصول مبتدئ",
-  "Jr Building & Facility Management Engineer": "مهندس إدارة مباني ومرافق مبتدئ",
-  "Jr Centralized Control Engineer": "مهندس تحكم مركزي مبتدئ",
-  "Jr Contracts Engineer": "مهندس عقود مبتدئ",
-  "Jr Cyber Security Engineer": "مهندس أمن سيبراني مبتدئ",
-  "Jr Data Specialist": "أخصائي بيانات مبتدئ",
-  "Jr HR Officer": "ضابط موارد بشرية مبتدئ",
-  "Jr OCC Controller": "مراقب OCC مبتدئ",
-  "Jr Operations Training Engineer": "مهندس تدريب عمليات مبتدئ",
-  "Jr Planning & Scheduling Engineer": "مهندس تخطيط وجدولة مبتدئ",
-  "Jr Planning Officer": "ضابط تخطيط مبتدئ",
-  "Jr Regulation & Documentation Engineer": "مهندس تنظيم وتوثيق مبتدئ",
-  "Jr Rolling Stock Engineer": "مهندس عربات سكك حديدية مبتدئ",
-  "Jr SOC Engineer": "مهندس SOC مبتدئ",
-  "Jr Software Developer": "مطور برمجيات مبتدئ",
-  "Jr Systems Administrator": "مسؤول أنظمة مبتدئ",
-  "Jr Talent Acquisition Officer": "ضابط اكتتاب مواهب مبتدئ",
-  "Jr Telecom Engineer": "مهندس اتصالات مبتدئ",
-  "Jr Track Engineer": "مهندس مسار مبتدئ",
-  "Jr Translator": "مترجم مبتدئ",
-  "Jr Treasury Officer": "ضابط خزانة مبتدئ",
-  "Jr Zone Manager": "مدير منطقة مبتدئ",
-  "Line Manager": "مدير خط",
-  "Logistic Support Officer": "ضابط دعم لوجستي",
-  "Logistic Support Supervisor": "مشرف دعم لوجستي",
-  "Logistics & Warehouses Assistant Technician": "فني مساعد لوجستي ومستودعات",
-  "Logistics & Warehouses Manager": "مدير لوجستي ومستودعات",
-  "Logistics & Warehouses Supervisor": "مشرف لوجستي ومستودعات",
-  "Logistics & Warehouses Technician": "فني لوجستي ومستودعات",
-  "Logistics Officer Assistant": "مساعد ضابط لوجستي",
-  "Logistics Support Officer": "ضابط دعم لوجستي",
-  "LRT Driver": "سائق LRT",
-  "LRT Driver Trainee": "متدرب سائق LRT",
-  "Mainline Manager": "مدير الخط الرئيسي",
-  "Mainline Supervisor": "مشرف الخط الرئيسي",
-  "Maintenance Director": "مدير الصيانة",
-  "Maintenance Engineering Manager": "مدير هندسة الصيانة",
-  "Maintenance Monitoring Engineer": "مهندس مراقبة الصيانة",
-  "Maintenance Monitoring Lead Engineer": "المهندس الرئيسي لمراقبة الصيانة",
-  "Maintenance Monitoring Manager": "مدير مراقبة الصيانة",
-  "Managing Director": "المدير العام",
-  "Marketing & Communications Coordinator": "منسق التسويق والاتصالات",
-  "Marketing & Customer Experience Manager": "مدير التسويق وتجربة العملاء",
-  "Marketing & Customer Experience Officer": "ضابط التسويق وتجربة العملاء",
-  "Material & Inventory Control Analyst": "محلل مراقبة المواد والمخزون",
-  "MCC Engineer": "مهندس MCC",
-  "MCC Supervisor": "مشرف MCC",
-  "Mechanical Assistant Technician": "فني ميكانيكي مساعد",
-  "Mechanical Supervisor": "مشرف ميكانيكي",
-  "Mechanical Technician": "فني ميكانيكي",
-  "MEP Manager": "مدير MEP",
-  "Metro Driver": "سائق مترو",
-  "Metro Driver Trainee": "متدرب سائق مترو",
-  "Network Engineer": "مهندس شبكات",
-  "OCC Controller": "مراقب OCC",
-  "OCC Duty Chief Controller": "رئيس مراقبي OCC",
-  "OCC Manager": "مدير OCC",
-  "Office Assistant": "مساعد مكتب",
-  "OHSE Manager": "مدير الصحة والسلامة والبيئة",
-  "Operational Railway Safety Coordinator": "منسق سلامة السكك الحديدية التشغيلية",
-  "Operational Railway Safety Manager": "مدير سلامة السكك الحديدية التشغيلية",
-  "Operations Coordinator": "منسق العمليات",
-  "Operations Data & Investigation Supervisor": "مشرف بيانات العمليات والتحقيق",
-  "Operations Director": "مدير العمليات",
-  "Operations Engineering Manager": "مدير هندسة العمليات",
-  "Operations Performance & Safety Manager": "مدير أداء العمليات والسلامة",
-  "Operations Training Coordinator": "منسق تدريب العمليات",
-  "Operations Training Engineer": "مهندس تدريب العمليات",
-  "Operations Training Manager": "مدير تدريب العمليات",
-  "Passenger Information & Production Assistant": "مساعد معلومات الركاب والإنتاج",
-  "Passengers Information Manager": "مدير معلومات الركاب",
-  "Payroll Officer": "ضابط كشوف المرتبات",
-  "Payroll Team Leader": "قائد فريق كشوف المرتبات",
-  "PCP Supervisor": "مشرف PCP",
-  "PCP Technician": "فني PCP",
-  "Performance & Risk Manager": "مدير الأداء والمخاطر",
-  "Performance Analyst": "محلل أداء",
-  "Personnel Manager": "مدير شؤون الموظفين",
-  "Planning & Audit Manager": "مدير التخطيط والمراجعة",
-  "Planning & Scheduling Manager": "مدير التخطيط والجدولة",
-  "Planning Officer": "ضابط تخطيط",
-  "Position": "المنصب",
-  "Power Supply Engineer": "مهندس إمداد الطاقة",
-  "Power Supply Supervisor": "مشرف إمداد الطاقة",
-  "Power Supply Technician": "فني إمداد الطاقة",
-  "PR & Communications Lead": "رئيس العلاقات العامة والاتصالات",
-  "Principal Translator": "المترجم الرئيسي",
-  "Process & Reporting Manager": "مدير العمليات والتقارير",
-  "Procurement Engineer": "مهندس مشتريات",
-  "Procurement Officer": "ضابط مشتريات",
-  "Project Engineer": "مهندس مشروع",
-  "PTW Engineer": "مهندس PTW",
-  "PTW Supervisor": "مشرف PTW",
-  "Public Affairs Manager": "مدير الشؤون العامة",
-  "Public Relations Manager": "مدير العلاقات العامة",
-  "Quality & Continuous Improvement Supervisor": "مشرف الجودة والتحسين المستمر",
-  "Quality Controller": "مراقب الجودة",
-  "Quality Investigator": "محقق الجودة",
-  "Quality Investigator Supervisor": "مشرف محقق الجودة",
-  "Quality Investigator Team Leader": "قائد فريق محقق الجودة",
-  "Railway Operations Master": "خبير عمليات السكك الحديدية",
-  "Railway Production Lead": "رئيس إنتاج السكك الحديدية",
-  "Railway Safety Supervisor": "مشرف سلامة السكك الحديدية",
-  "Regulation & Documentation Engineer": "مهندس تنظيم وتوثيق",
-  "Regulation & Documentation Manager": "مدير تنظيم وتوثيق",
-  "Revenue Assistant": "مساعد إيرادات",
-  "Revenue Cashier": "أمين صندوق الإيرادات",
-  "Revenue Manager": "مدير الإيرادات",
-  "Rolling Stock Assistant Technician": "فني مساعد عربات السكك الحديدية",
-  "Rolling Stock Engineer": "مهندس عربات السكك الحديدية",
-  "Rolling Stock Lead Engineer": "المهندس الرئيسي لعربات السكك الحديدية",
-  "Rolling Stock Manager": "مدير عربات السكك الحديدية",
-  "Rolling Stock Process Engineer": "مهندس عمليات عربات السكك الحديدية",
-  "Rolling Stock Supervisor": "مشرف عربات السكك الحديدية",
-  "Rolling Stock Technician": "فني عربات السكك الحديدية",
-  "Safe Keeper": "حافظ الأمان",
-  "Sales Agent": "وكيل مبيعات",
-  "Sales Leader": "قائد المبيعات",
-  "Scheduling Engineer": "مهندس جدولة",
-  "Security Device Engineer": "مهندس أجهزة الأمن",
-  "Security Device Technician": "فني أجهزة الأمن",
-  "Security Expert": "خبير أمني",
-  "Security Inspector": "مفتش أمني",
-  "Service Provider Interface Manager": "مدير واجهة مزود الخدمة",
-  "Shunting Driver": "سائق مناورة",
-  "Sign Language Specialist": "أخصائي لغة الإشارة",
-  "Signaling & CC Lead Engineer": "المهندس الرئيسي للإشارة والتحكم",
-  "Signaling Engineer": "مهندس إشارة",
-  "Signaling Supervisor": "مشرف إشارة",
-  "Signaling Technician": "فني إشارة",
-  "SOC Engineer": "مهندس SOC",
-  "Software QA Analyst": "محلل ضمان جودة البرمجيات",
-  "Sr Accountant": "محاسب أول",
-  "Sr BMS Engineer": "مهندس BMS أول",
-  "Sr Budget & Controlling Specialist": "أخصائي ميزانية ومراقبة أول",
-  "Sr Civil Engineer": "مهندس مدني أول",
-  "Sr Content Specialist": "أخصائي محتوى أول",
-  "Sr Cyber Security Engineer": "مهندس أمن سيبراني أول",
-  "Sr Escalators & Elevators Engineer": "مهندس سلالم متحركة ومصاعد أول",
-  "Sr Firefighting & Dewatering Engineer": "مهندس مكافحة حرائق وإزالة مياه أول",
-  "Sr Graphic Designer": "مصمم جرافيك أول",
-  "Sr HR Officer": "ضابط موارد بشرية أول",
-  "Sr HVAC Engineer": "مهندس HVAC أول",
-  "Sr Marketing & Customer Experience Officer": "ضابط تسويق وتجربة عملاء أول",
-  "Sr MEP Lead Engineer": "المهندس الرئيسي لـ MEP أول",
-  "Sr Operations Training Engineer": "مهندس تدريب عمليات أول",
-  "Sr Payroll Officer": "ضابط كشوف مرتبات أول",
-  "Sr PCP Supervisor": "مشرف PCP أول",
-  "Sr Performance Analyst": "محلل أداء أول",
-  "Sr Power Supply Engineer": "مهندس إمداد طاقة أول",
-  "Sr Procurement Engineer": "مهندس مشتريات أول",
-  "Sr Procurement Officer": "ضابط مشتريات أول",
-  "Sr Project Engineer": "مهندس مشروع أول",
-  "Sr Projects & Planning Engineer": "مهندس مشاريع وتخطيط أول",
-  "Sr Quality & Continuous Improvement Supervisor": "مشرف جودة وتحسين مستمر أول",
-  "Sr Railway Infrastructure Lead Engineer": "المهندس الرئيسي لبنية السكك الحديدية أول",
-  "Sr Regulation & Documentation Engineer": "مهندس تنظيم وتوثيق أول",
-  "Sr Rolling Stock Engineer": "مهندس عربات سكك حديدية أول",
-  "Sr Rolling Stock Technician": "فني عربات سكك حديدية أول",
-  "Sr Signaling Engineer": "مهندس إشارة أول",
-  "Sr Social Media Specialist": "أخصائي وسائل تواصل اجتماعي أول",
-  "Sr Supply Chain & Stock Engineer": "مهندس سلسلة توريد ومخزون أول",
-  "Sr Supply Chain Excellence Supervisor": "مشرف تميز سلسلة التوريد أول",
-  "Sr Talent Acquisition Officer": "ضابط اكتتاب مواهب أول",
-  "Sr Telecom Engineer": "مهندس اتصالات أول",
-  "Sr Tendering Officer": "ضابط مناقصات أول",
-  "Sr Track Engineer": "مهندس مسار أول",
-  "Sr Training & Development Officer": "ضابط تدريب وتطوير أول",
-  "Staff Administration Manager": "مدير إدارة الموظفين",
-  "Stakeholders Coordinator": "منسق أصحاب المصلحة",
-  "Stakeholders Manager": "مدير أصحاب المصلحة",
-  "Stakeholders Director": "مدير أصحاب المصلحة",
-  "Station Accountant": "محاسب المحطة",
-  "Station Control Team Leader": "قائد فريق مراقبة المحطة",
-  "Station Controller": "مراقب المحطة",
-  "Station Master": "رئيس المحطة",
-  "Stock Assistant": "مساعد مخزون",
-  "Stock Officer": "ضابط مخزون",
-  "Stock Supervisor": "مشرف مخزون",
-  "Strategy & Development Manager": "مدير الاستراتيجية والتطوير",
-  "Student": "طالب",
-  "Supply Chain & Procurement Manager": "مدير سلسلة التوريد والمشتريات",
-  "Supply Chain & Stock Analyst": "محلل سلسلة التوريد والمخزون",
-  "Support Functions IS Manager": "مدير نظم دعم الوظائف",
-  "Systems Manager": "مدير الأنظمة",
-  "Talent Acquisition Manager": "مدير اكتتاب المواهب",
-  "Talent Acquisition Team Leader": "قائد فريق اكتتاب المواهب",
-  "Technical Director": "المدير الفني",
-  "Technical Project Lead": "رئيس المشروع الفني",
-  "Telecom & AFC Lead Engineer": "المهندس الرئيسي للاتصالات و AFC",
-  "Telecom Engineer": "مهندس اتصالات",
-  "Telecom Supervisor": "مشرف اتصالات",
-  "Telecom Technician": "فني اتصالات",
-  "Track Assistant Technician": "فني مسار مساعد",
-  "Track Engineer": "مهندس مسار",
-  "Track Manager": "مدير المسار",
-  "Track Supervisor": "مشرف المسار",
-  "Track Technician": "فني مسار",
-  "Training & Assessment Officer": "ضابط تدريب وتقييم",
-  "Training & CMS Lead": "رئيس التدريب و CMS",
-  "Training & Development Manager": "مدير التدريب والتطوير",
-  "Training & Development Officer": "ضابط التدريب والتطوير",
-  "Transport Manager": "مدير النقل",
-  "Treasury Manager": "مدير الخزانة",
-  "WLSB Controller": "مراقب WLSB",
-  "Work Permits Supervisor": "مشرف تصاريح العمل",
-  "X-Ray Machine Officer": "ضابط جهاز الأشعة السينية",
-  "Zone Head": "رئيس المنطقة",
-  "Zone Manager": "مدير المنطقة",
+  // "Accountant": "محاسب",
+  // "Accounting Supervisor": "مشرف محاسبة",
+  // "Admin & DC Assistant": "مساعد إداري ومركز توزيع",
+  // "AFC Engineer": "مهندس AFC",
+  // "AFC Supervisor": "مشرف AFC",
+  // "AFC Technician": "فني AFC",
+  // "Applications Analyst": "محلل تطبيقات",
+  // "Asset Documentation & Survey Assistant": "مساعد توثيق ومسح الأصول",
+  // "Asset Management Engineer": "مهندس إدارة الأصول",
+  // "Audit Officer": "ضابط مراجعة",
+  // "BMS Engineer": "مهندس BMS",
+  // "BMS Supervisor": "مشرف BMS",
+  // "BMS Technician": "فني BMS",
+  // "Building & Facility Management Assistant Technician": "فني مساعد إدارة المباني والمرافق",
+  // "Building & Facility Management Engineer": "مهندس إدارة المباني والمرافق",
+  // "Building & Facility Management Lead Engineer": "المهندس الرئيسي لإدارة المباني والمرافق",
+  // "Building & Facility Management Manager": "مدير إدارة المباني والمرافق",
+  // "Building & Facility Management Technician": "فني إدارة المباني والمرافق",
+  // "Centralized Control Engineer": "مهندس التحكم المركزي",
+  // "Centralized Control Supervisor": "مشرف التحكم المركزي",
+  // "Centralized Control Technician": "فني التحكم المركزي",
+  // "Chief Operating Officer": "الرئيس التنفيذي للعمليات",
+  // "Civil Assistant Technician": "فني مدني مساعد",
+  // "Civil Engineer": "مهندس مدني",
+  // "Civil Supervisor": "مشرف مدني",
+  // "Civil Technician": "فني مدني",
+  // "Client’s Relationship Supervisor": "مشرف علاقات العملاء",
+  // "CMMS & Data Engineering Manager": "مدير CMMS وهندسة البيانات",
+  // "CMMS Engineer": "مهندس CMMS",
+  // "CMS Development Manager": "مدير تطوير CMS",
+  // "COC Operator": "مشغل COC",
+  // "Commercial Lead": "رئيس التجارية",
+  // "Commercial Officer": "ضابط تجاري",
+  // "Communications Manager": "مدير الاتصالات",
+  // "Compensation & Benefits Manager": "مدير التعويضات والمزايا",
+  // "Compliance Officer": "ضابط الامتثال",
+  // "Compliance Officer Assistant": "مساعد ضابط الامتثال",
+  // "Contracts Manager": "مدير العقود",
+  // "Control & Security Manager": "مدير التحكم والأمن",
+  // "Control & Security Supervisor": "مشرف التحكم والأمن",
+  // "Controller": "مراقب",
+  // "Customer Information Officer": "ضابط معلومات العملاء",
+  // "Customer Information Supervisor": "مشرف معلومات العملاء",
+  // "Customer Service Agent": "وكيل خدمة العملاء",
+  // "Customer Service Interface Manager": "مدير واجهة خدمة العملاء",
+  // "Customer Service Manager": "مدير خدمة العملاء",
+  // "Cyber Security GRC Engineer": "مهندس أمن سيبراني GRC",
+  // "Data Analysis Supervisor": "مشرف تحليل البيانات",
+  // "Data Engineer": "مهندس بيانات",
+  // "Data Protection Officer": "ضابط حماية البيانات",
+  // "Data Scientist": "عالم بيانات",
+  // "Department Support Engineer": "مهندس دعم الإدارات",
+  // "Department Support Officer": "ضابط دعم الإدارات",
+  // "Depot Equipment Lead Engineer": "المهندس الرئيسي لمعدات المستودع",
+  // "Depot Equipment Operator": "مشغل معدات المستودع",
+  // "Depot Manager": "مدير المستودع",
+  // "Deputy HSE Manager": "نائب مدير الصحة والسلامة والبيئة",
+  // "Deputy Infrastructure Manager": "نائب مدير البنية التحتية",
+  // "Deputy Managing Director": "نائب المدير العام",
+  // "Deputy Operations Director": "نائب مدير العمليات",
+  // "Deputy Operations Engineering Manager": "نائب مدير هندسة العمليات",
+  // "Deputy Rolling Stock Manager": "نائب مدير عربات السكك الحديدية",
+  // "Deputy Security Expert": "نائب الخبير الأمني",
+  // "Dispatching Officer": "ضابط إرسال",
+  // "Document Control Supervisor": "مشرف مراقبة الوثائق",
+  // "Document Controller": "مراقب الوثائق",
+  // "Driving Lead Engineer": "المهندس الرئيسي للقيادة",
+  // "Driving Supervisor": "مشرف القيادة",
+  // "Electric Low Voltage Engineer": "مهندس كهرباء منخفضة الجهد",
+  // "Electric Low Voltage Supervisor": "مشرف كهرباء منخفضة الجهد",
+  // "Electric Low Voltage Technician": "فني كهرباء منخفضة الجهد",
+  // "Electrical Assistant Technician": "فني كهربائي مساعد",
+  // "Electrical Supervisor": "مشرف كهربائي",
+  // "Electrical Technician": "فني كهربائي",
+  // "Electronic Maintenance Technician": "فني صيانة إلكترونية",
+  // "Escalators & Elevators Engineer": "مهندس سلالم متحركة ومصاعد",
+  // "Escalators & Elevators Technician": "فني سلالم متحركة ومصاعد",
+  // "Executive Assistant": "مساعد تنفيذي",
+  // "Finance Director": "مدير المالية",
+  // "Financial Planning & Analysis Manager": "مدير التخطيط المالي والتحليل",
+  // "Fire Safety Manager": "مدير السلامة من الحرائق",
+  // "Fire Safety Supervisor": "مشرف السلامة من الحرائق",
+  // "Firefighting & Dewatering Technician": "فني مكافحة الحرائق وإزالة المياه",
+  // "Fraud Control Manager": "مدير مكافحة الاحتيال",
+  // "Fraud Controller": "مراقب الاحتيال",
+  // "General Services Manager": "مدير الخدمات العامة",
+  // "General Services Specialist": "أخصائي خدمات عامة",
+  // "General Services Supervisor": "مشرف خدمات عامة",
+  // "Graphic Designer": "مصمم جرافيك",
+  // "Handover & Support Engineer": "مهندس تسليم ودعم",
+  // "Head of AFC": "رئيس AFC",
+  // "Head of Asset Management": "رئيس إدارة الأصول",
+  // "Head of Centralized Control": "رئيس التحكم المركزي",
+  // "Head of Depot Equipment": "رئيس معدات المستودع",
+  // "Head of Digital": "رئيس الرقمية",
+  // "Head of Heavy Maintenance": "رئيس الصيانة الثقيلة",
+  // "Head of IT Infrastructure": "رئيس البنية التحتية لتكنولوجيا المعلومات",
+  // "Head of LRW": "رئيس LRW",
+  // "Head of Mainline": "رئيس الخط الرئيسي",
+  // "Head of Marketing & Customer Experience": "رئيس التسويق وتجربة العملاء",
+  // "Head of MCC": "رئيس MCC",
+  // "Head of Operations Data & Investigation": "رئيس بيانات العمليات والتحقيق",
+  // "Head Of Planning & Scheduling": "رئيس التخطيط والجدولة",
+  // "Head of Power Supply": "رئيس إمدادات الطاقة",
+  // "Head of PTW": "رئيس PTW",
+  // "Head Of Safety Delivery": "رئيس تسليم السلامة",
+  // "Head of Telecom": "رئيس الاتصالات",
+  // "HR Business Partner": "شريك أعمال الموارد البشرية",
+  // "HR Coordinator": "منسق الموارد البشرية",
+  // "HR Director": "مدير الموارد البشرية",
+  // "HR Generalist": "أخصائي موارد بشرية عام",
+  // "HR Officer": "ضابط موارد بشرية",
+  // "HR Supervisor": "مشرف موارد بشرية",
+  // "HR Support Specialist": "أخصائي دعم الموارد البشرية",
+  // "HSE Delivery Manager": "مدير تسليم الصحة والسلامة والبيئة",
+  // "HSE Supervisor": "مشرف الصحة والسلامة والبيئة",
+  // "HVAC Mechanical Engineer": "مهندس ميكانيكي HVAC",
+  // "IMS & Quality Manager": "مدير IMS والجودة",
+  // "Infrastructure Manager": "مدير البنية التحتية",
+  // "Intern": "متدرب",
+  // "Investigation & Audit Manager": "مدير التحقيق والمراجعة",
+  // "IT Helpdesk Administrator": "مسؤول مكتب مساعدة تكنولوجيا المعلومات",
+  // "IT Services Team Leader": "قائد فريق خدمات تكنولوجيا المعلومات",
+  // "IT Specialist": "أخصائي تكنولوجيا المعلومات",
+  // "Jr AFC Engineer": "مهندس AFC مبتدئ",
+  // "Jr Application Support Specialist": "أخصائي دعم التطبيقات مبتدئ",
+  // "Jr Asset Management Engineer": "مهندس إدارة أصول مبتدئ",
+  // "Jr Building & Facility Management Engineer": "مهندس إدارة مباني ومرافق مبتدئ",
+  // "Jr Centralized Control Engineer": "مهندس تحكم مركزي مبتدئ",
+  // "Jr Contracts Engineer": "مهندس عقود مبتدئ",
+  // "Jr Cyber Security Engineer": "مهندس أمن سيبراني مبتدئ",
+  // "Jr Data Specialist": "أخصائي بيانات مبتدئ",
+  // "Jr HR Officer": "ضابط موارد بشرية مبتدئ",
+  // "Jr OCC Controller": "مراقب OCC مبتدئ",
+  // "Jr Operations Training Engineer": "مهندس تدريب عمليات مبتدئ",
+  // "Jr Planning & Scheduling Engineer": "مهندس تخطيط وجدولة مبتدئ",
+  // "Jr Planning Officer": "ضابط تخطيط مبتدئ",
+  // "Jr Regulation & Documentation Engineer": "مهندس تنظيم وتوثيق مبتدئ",
+  // "Jr Rolling Stock Engineer": "مهندس عربات سكك حديدية مبتدئ",
+  // "Jr SOC Engineer": "مهندس SOC مبتدئ",
+  // "Jr Software Developer": "مطور برمجيات مبتدئ",
+  // "Jr Systems Administrator": "مسؤول أنظمة مبتدئ",
+  // "Jr Talent Acquisition Officer": "ضابط اكتتاب مواهب مبتدئ",
+  // "Jr Telecom Engineer": "مهندس اتصالات مبتدئ",
+  // "Jr Track Engineer": "مهندس مسار مبتدئ",
+  // "Jr Translator": "مترجم مبتدئ",
+  // "Jr Treasury Officer": "ضابط خزانة مبتدئ",
+  // "Jr Zone Manager": "مدير منطقة مبتدئ",
+  // "Line Manager": "مدير خط",
+  // "Logistic Support Officer": "ضابط دعم لوجستي",
+  // "Logistic Support Supervisor": "مشرف دعم لوجستي",
+  // "Logistics & Warehouses Assistant Technician": "فني مساعد لوجستي ومستودعات",
+  // "Logistics & Warehouses Manager": "مدير لوجستي ومستودعات",
+  // "Logistics & Warehouses Supervisor": "مشرف لوجستي ومستودعات",
+  // "Logistics & Warehouses Technician": "فني لوجستي ومستودعات",
+  // "Logistics Officer Assistant": "مساعد ضابط لوجستي",
+  // "Logistics Support Officer": "ضابط دعم لوجستي",
+  // "LRT Driver": "سائق LRT",
+  // "LRT Driver Trainee": "متدرب سائق LRT",
+  // "Mainline Manager": "مدير الخط الرئيسي",
+  // "Mainline Supervisor": "مشرف الخط الرئيسي",
+  // "Maintenance Director": "مدير الصيانة",
+  // "Maintenance Engineering Manager": "مدير هندسة الصيانة",
+  // "Maintenance Monitoring Engineer": "مهندس مراقبة الصيانة",
+  // "Maintenance Monitoring Lead Engineer": "المهندس الرئيسي لمراقبة الصيانة",
+  // "Maintenance Monitoring Manager": "مدير مراقبة الصيانة",
+  // "Managing Director": "المدير العام",
+  // "Marketing & Communications Coordinator": "منسق التسويق والاتصالات",
+  // "Marketing & Customer Experience Manager": "مدير التسويق وتجربة العملاء",
+  // "Marketing & Customer Experience Officer": "ضابط التسويق وتجربة العملاء",
+  // "Material & Inventory Control Analyst": "محلل مراقبة المواد والمخزون",
+  // "MCC Engineer": "مهندس MCC",
+  // "MCC Supervisor": "مشرف MCC",
+  // "Mechanical Assistant Technician": "فني ميكانيكي مساعد",
+  // "Mechanical Supervisor": "مشرف ميكانيكي",
+  // "Mechanical Technician": "فني ميكانيكي",
+  // "MEP Manager": "مدير MEP",
+  // "Metro Driver": "سائق مترو",
+  // "Metro Driver Trainee": "متدرب سائق مترو",
+  // "Network Engineer": "مهندس شبكات",
+  // "OCC Controller": "مراقب OCC",
+  // "OCC Duty Chief Controller": "رئيس مراقبي OCC",
+  // "OCC Manager": "مدير OCC",
+  // "Office Assistant": "مساعد مكتب",
+  // "OHSE Manager": "مدير الصحة والسلامة والبيئة",
+  // "Operational Railway Safety Coordinator": "منسق سلامة السكك الحديدية التشغيلية",
+  // "Operational Railway Safety Manager": "مدير سلامة السكك الحديدية التشغيلية",
+  // "Operations Coordinator": "منسق العمليات",
+  // "Operations Data & Investigation Supervisor": "مشرف بيانات العمليات والتحقيق",
+  // "Operations Director": "مدير العمليات",
+  // "Operations Engineering Manager": "مدير هندسة العمليات",
+  // "Operations Performance & Safety Manager": "مدير أداء العمليات والسلامة",
+  // "Operations Training Coordinator": "منسق تدريب العمليات",
+  // "Operations Training Engineer": "مهندس تدريب العمليات",
+  // "Operations Training Manager": "مدير تدريب العمليات",
+  // "Passenger Information & Production Assistant": "مساعد معلومات الركاب والإنتاج",
+  // "Passengers Information Manager": "مدير معلومات الركاب",
+  // "Payroll Officer": "ضابط كشوف المرتبات",
+  // "Payroll Team Leader": "قائد فريق كشوف المرتبات",
+  // "PCP Supervisor": "مشرف PCP",
+  // "PCP Technician": "فني PCP",
+  // "Performance & Risk Manager": "مدير الأداء والمخاطر",
+  // "Performance Analyst": "محلل أداء",
+  // "Personnel Manager": "مدير شؤون الموظفين",
+  // "Planning & Audit Manager": "مدير التخطيط والمراجعة",
+  // "Planning & Scheduling Manager": "مدير التخطيط والجدولة",
+  // "Planning Officer": "ضابط تخطيط",
+  // "Position": "المنصب",
+  // "Power Supply Engineer": "مهندس إمداد الطاقة",
+  // "Power Supply Supervisor": "مشرف إمداد الطاقة",
+  // "Power Supply Technician": "فني إمداد الطاقة",
+  // "PR & Communications Lead": "رئيس العلاقات العامة والاتصالات",
+  // "Principal Translator": "المترجم الرئيسي",
+  // "Process & Reporting Manager": "مدير العمليات والتقارير",
+  // "Procurement Engineer": "مهندس مشتريات",
+  // "Procurement Officer": "ضابط مشتريات",
+  // "Project Engineer": "مهندس مشروع",
+  // "PTW Engineer": "مهندس PTW",
+  // "PTW Supervisor": "مشرف PTW",
+  // "Public Affairs Manager": "مدير الشؤون العامة",
+  // "Public Relations Manager": "مدير العلاقات العامة",
+  // "Quality & Continuous Improvement Supervisor": "مشرف الجودة والتحسين المستمر",
+  // "Quality Controller": "مراقب الجودة",
+  // "Quality Investigator": "محقق الجودة",
+  // "Quality Investigator Supervisor": "مشرف محقق الجودة",
+  // "Quality Investigator Team Leader": "قائد فريق محقق الجودة",
+  // "Railway Operations Master": "خبير عمليات السكك الحديدية",
+  // "Railway Production Lead": "رئيس إنتاج السكك الحديدية",
+  // "Railway Safety Supervisor": "مشرف سلامة السكك الحديدية",
+  // "Regulation & Documentation Engineer": "مهندس تنظيم وتوثيق",
+  // "Regulation & Documentation Manager": "مدير تنظيم وتوثيق",
+  // "Revenue Assistant": "مساعد إيرادات",
+  // "Revenue Cashier": "أمين صندوق الإيرادات",
+  // "Revenue Manager": "مدير الإيرادات",
+  // "Rolling Stock Assistant Technician": "فني مساعد عربات السكك الحديدية",
+  // "Rolling Stock Engineer": "مهندس عربات السكك الحديدية",
+  // "Rolling Stock Lead Engineer": "المهندس الرئيسي لعربات السكك الحديدية",
+  // "Rolling Stock Manager": "مدير عربات السكك الحديدية",
+  // "Rolling Stock Process Engineer": "مهندس عمليات عربات السكك الحديدية",
+  // "Rolling Stock Supervisor": "مشرف عربات السكك الحديدية",
+  // "Rolling Stock Technician": "فني عربات السكك الحديدية",
+  // "Safe Keeper": "حافظ الأمان",
+  // "Sales Agent": "وكيل مبيعات",
+  // "Sales Leader": "قائد المبيعات",
+  // "Scheduling Engineer": "مهندس جدولة",
+  // "Security Device Engineer": "مهندس أجهزة الأمن",
+  // "Security Device Technician": "فني أجهزة الأمن",
+  // "Security Expert": "خبير أمني",
+  // "Security Inspector": "مفتش أمني",
+  // "Service Provider Interface Manager": "مدير واجهة مزود الخدمة",
+  // "Shunting Driver": "سائق مناورة",
+  // "Sign Language Specialist": "أخصائي لغة الإشارة",
+  // "Signaling & CC Lead Engineer": "المهندس الرئيسي للإشارة والتحكم",
+  // "Signaling Engineer": "مهندس إشارة",
+  // "Signaling Supervisor": "مشرف إشارة",
+  // "Signaling Technician": "فني إشارة",
+  // "SOC Engineer": "مهندس SOC",
+  // "Software QA Analyst": "محلل ضمان جودة البرمجيات",
+  // "Sr Accountant": "محاسب أول",
+  // "Sr BMS Engineer": "مهندس BMS أول",
+  // "Sr Budget & Controlling Specialist": "أخصائي ميزانية ومراقبة أول",
+  // "Sr Civil Engineer": "مهندس مدني أول",
+  // "Sr Content Specialist": "أخصائي محتوى أول",
+  // "Sr Cyber Security Engineer": "مهندس أمن سيبراني أول",
+  // "Sr Escalators & Elevators Engineer": "مهندس سلالم متحركة ومصاعد أول",
+  // "Sr Firefighting & Dewatering Engineer": "مهندس مكافحة حرائق وإزالة مياه أول",
+  // "Sr Graphic Designer": "مصمم جرافيك أول",
+  // "Sr HR Officer": "ضابط موارد بشرية أول",
+  // "Sr HVAC Engineer": "مهندس HVAC أول",
+  // "Sr Marketing & Customer Experience Officer": "ضابط تسويق وتجربة عملاء أول",
+  // "Sr MEP Lead Engineer": "المهندس الرئيسي لـ MEP أول",
+  // "Sr Operations Training Engineer": "مهندس تدريب عمليات أول",
+  // "Sr Payroll Officer": "ضابط كشوف مرتبات أول",
+  // "Sr PCP Supervisor": "مشرف PCP أول",
+  // "Sr Performance Analyst": "محلل أداء أول",
+  // "Sr Power Supply Engineer": "مهندس إمداد طاقة أول",
+  // "Sr Procurement Engineer": "مهندس مشتريات أول",
+  // "Sr Procurement Officer": "ضابط مشتريات أول",
+  // "Sr Project Engineer": "مهندس مشروع أول",
+  // "Sr Projects & Planning Engineer": "مهندس مشاريع وتخطيط أول",
+  // "Sr Quality & Continuous Improvement Supervisor": "مشرف جودة وتحسين مستمر أول",
+  // "Sr Railway Infrastructure Lead Engineer": "المهندس الرئيسي لبنية السكك الحديدية أول",
+  // "Sr Regulation & Documentation Engineer": "مهندس تنظيم وتوثيق أول",
+  // "Sr Rolling Stock Engineer": "مهندس عربات سكك حديدية أول",
+  // "Sr Rolling Stock Technician": "فني عربات سكك حديدية أول",
+  // "Sr Signaling Engineer": "مهندس إشارة أول",
+  // "Sr Social Media Specialist": "أخصائي وسائل تواصل اجتماعي أول",
+  // "Sr Supply Chain & Stock Engineer": "مهندس سلسلة توريد ومخزون أول",
+  // "Sr Supply Chain Excellence Supervisor": "مشرف تميز سلسلة التوريد أول",
+  // "Sr Talent Acquisition Officer": "ضابط اكتتاب مواهب أول",
+  // "Sr Telecom Engineer": "مهندس اتصالات أول",
+  // "Sr Tendering Officer": "ضابط مناقصات أول",
+  // "Sr Track Engineer": "مهندس مسار أول",
+  // "Sr Training & Development Officer": "ضابط تدريب وتطوير أول",
+  // "Staff Administration Manager": "مدير إدارة الموظفين",
+  // "Stakeholders Coordinator": "منسق أصحاب المصلحة",
+  // "Stakeholders Manager": "مدير أصحاب المصلحة",
+  // "Stakeholders Director": "مدير أصحاب المصلحة",
+  // "Station Accountant": "محاسب المحطة",
+  // "Station Control Team Leader": "قائد فريق مراقبة المحطة",
+  // "Station Controller": "مراقب المحطة",
+  // "Station Master": "رئيس المحطة",
+  // "Stock Assistant": "مساعد مخزون",
+  // "Stock Officer": "ضابط مخزون",
+  // "Stock Supervisor": "مشرف مخزون",
+  // "Strategy & Development Manager": "مدير الاستراتيجية والتطوير",
+  // "Student": "طالب",
+  // "Supply Chain & Procurement Manager": "مدير سلسلة التوريد والمشتريات",
+  // "Supply Chain & Stock Analyst": "محلل سلسلة التوريد والمخزون",
+  // "Support Functions IS Manager": "مدير نظم دعم الوظائف",
+  // "Systems Manager": "مدير الأنظمة",
+  // "Talent Acquisition Manager": "مدير اكتتاب المواهب",
+  // "Talent Acquisition Team Leader": "قائد فريق اكتتاب المواهب",
+  // "Technical Director": "المدير الفني",
+  // "Technical Project Lead": "رئيس المشروع الفني",
+  // "Telecom & AFC Lead Engineer": "المهندس الرئيسي للاتصالات و AFC",
+  // "Telecom Engineer": "مهندس اتصالات",
+  // "Telecom Supervisor": "مشرف اتصالات",
+  // "Telecom Technician": "فني اتصالات",
+  // "Track Assistant Technician": "فني مسار مساعد",
+  // "Track Engineer": "مهندس مسار",
+  // "Track Manager": "مدير المسار",
+  // "Track Supervisor": "مشرف المسار",
+  // "Track Technician": "فني مسار",
+  // "Training & Assessment Officer": "ضابط تدريب وتقييم",
+  // "Training & CMS Lead": "رئيس التدريب و CMS",
+  // "Training & Development Manager": "مدير التدريب والتطوير",
+  // "Training & Development Officer": "ضابط التدريب والتطوير",
+  // "Transport Manager": "مدير النقل",
+  // "Treasury Manager": "مدير الخزانة",
+  // "WLSB Controller": "مراقب WLSB",
+  // "Work Permits Supervisor": "مشرف تصاريح العمل",
+  // "X-Ray Machine Officer": "ضابط جهاز الأشعة السينية",
+  // "Zone Head": "رئيس المنطقة",
+  // "Zone Manager": "مدير المنطقة",
    "Department": "القسم",
   "Human Resources": "الموارد البشرية",
   "Technical": "الفني",

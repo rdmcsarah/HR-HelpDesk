@@ -259,7 +259,7 @@ const [files, setFiles] = useState<File[]>([]);
       }
 
       setUploadedUrls(urls);
-      setUploadStatus({ success: true, message: t("Filesuploadedsuccessfully") });
+      // setUploadStatus({ success: true, message: t("Filesuploadedsuccessfully") });
     // Handle file upload if a file is selected
     if (file) {
       const uploadData = new FormData();

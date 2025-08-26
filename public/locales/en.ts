@@ -174,7 +174,8 @@ searchEmployeeId:"Employee Id",
     titlePlaceholder: "Enter request title",
     characters: "characters",
     selectRequestType: "Select Request Type",
-
+empId:  "Employee ID",
+EmployeeId: "Employee ID",
     selectProjectType: "Select Project Type",
     requestDescription: "Request Description",
     descriptionPlaceholder:
