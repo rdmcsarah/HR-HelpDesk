@@ -850,7 +850,7 @@ const createColumns = (
   ...(emp?.empType === "ADMIN"
     ? [
         {
-          accessorKey: "userId",
+          accessorKey: "action",
           header: () => (
             <div className="px-4 py-2 text-center font-semibold">
               {mounted ? (

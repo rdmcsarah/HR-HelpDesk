@@ -40,9 +40,11 @@ const [mounted, setMounted] = useState(false);
     <div className="p-6 md:p-8 space-y-6">
       <header className="text-center space-y-4">
         <h1 className="text-3xl font-bold text-gray-100">{t("hrHelpDeskTitle")}</h1>
-        <p className="text-lg text-gray-200 max-w-3xl mx-auto">
-          {t("hrHelpDeskDescription")}
-        </p>
+       
+        <p className="whitespace-pre-line text-lg text-gray-200 max-w-3xl mx-auto">
+  {t("hrHelpDeskDescription")}
+</p>
+
       </header>
 
       <div className="flex flex-col md:flex-row justify-center gap-6 mt-10">
