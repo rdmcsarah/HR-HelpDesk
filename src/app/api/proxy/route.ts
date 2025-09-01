@@ -57,9 +57,9 @@ export async function POST(request: Request) {
 
     console.log('➡️ Proxying to:', apiUrl);
 
-    // Optional: Add timeout support (20 seconds)
+    // Add timeout controller (optional)
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 20000); // 20s
+    const timeout = setTimeout(() => controller.abort(), 20000); // 20 seconds
 
     const response = await fetch(apiUrl, {
       method: 'POST',
@@ -75,10 +75,18 @@ export async function POST(request: Request) {
 
     if (!response.ok) {
       let errorData;
+
       try {
+        // Attempt to parse JSON error from upstream
         errorData = await response.json();
       } catch {
-        errorData = { message: 'Unknown error from upstream server' };
+        // If parsing fails, fallback to raw text
+        const raw = await response.text();
+        errorData = {
+          message: 'Unknown error from upstream server',
+          raw,
+          status: response.status,
+        };
       }
 
       console.error('❌ Upstream server error:', errorData);
@@ -90,7 +98,7 @@ export async function POST(request: Request) {
     }
 
     const data = await response.json();
-    console.log('✅ Success:', data);
+    console.log('✅ Upstream response:', data);
 
     return NextResponse.json(data, { status: 200 });
 
@@ -104,10 +112,9 @@ export async function POST(request: Request) {
   }
 }
 
-
 export async function GET() {
   return NextResponse.json(
-    { message: 'Method not allowed' },
+    { message: 'Method Not Allowed' },
     { status: 405 }
   );
 }
