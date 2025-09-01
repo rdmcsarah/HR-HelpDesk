@@ -974,9 +974,9 @@ const [files, setFiles] = useState<File[]>([]);
         }),
       });
 
-      if (!notificationResponse.ok) {
-        throw new Error(`Failed to send notification`);
-      }
+      // if (!notificationResponse.ok) {
+      //   throw new Error(`Failed to send notification`);
+      // }
       console.log("Notification sent successfully",notificationResponse);
       router.push(`/${data.id}/done_request`);
     } catch (err) {
