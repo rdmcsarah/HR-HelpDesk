@@ -695,8 +695,8 @@ import React, { use, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import "@/i18n";
 import { useTranslation } from "react-i18next";
-import i18n from "@/i18n";
-import { set } from "date-fns";
+// import i18n from "@/i18n";
+// import { set } from "date-fns";
 import { useEmployee } from "@/context/EmployeeContext";
 export default function Page() {
   type Employee = {
@@ -958,9 +958,10 @@ const [files, setFiles] = useState<File[]>([]);
       const data = await response.json();
       setRequestId(data.id);
       console.log("Request submitted successfully:", data);
-      const phoneNumber = "20"+empData?.[0].phone;
+      const phoneNumber = "2"+empData?.[0].phone;
       console.log("Employee phone number#######################131#:", phoneNumber);
       console.log("Sending notification...");
+      console.log("phone::",phoneNumber)
       const notificationResponse = await fetch("/api/proxy", {
         method: "POST",
         headers: {
@@ -973,10 +974,10 @@ const [files, setFiles] = useState<File[]>([]);
         }),
       });
 
-      // if (!notificationResponse.ok) {
-      //   throw new Error(`Failed to send notification`);
-      // }
-      console.log("Notification sent successfully");
+      if (!notificationResponse.ok) {
+        throw new Error(`Failed to send notification`);
+      }
+      console.log("Notification sent successfully",notificationResponse);
       router.push(`/${data.id}/done_request`);
     } catch (err) {
       console.error("Error submitting request:", err);

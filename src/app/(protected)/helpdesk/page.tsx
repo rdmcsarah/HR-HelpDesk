@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import "@/i18n";
 import { useTranslation } from "react-i18next";
-import i18n from "@/i18n";
+// import i18n from "@/i18n";
 import { useEffect, useState } from "react";
 export default function Page() {
 const [mounted, setMounted] = useState(false);
