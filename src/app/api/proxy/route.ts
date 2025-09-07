@@ -46,7 +46,7 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    console.log("Incoming request body:", body);
+    console.log("Incoming request bodyvvv", body);
 
     const response = await fetch('https://smsportal.mobilitycairo.com/api/generate-hmac', {
       method: 'POST',
