@@ -3,6 +3,7 @@ import { NextResponse } from 'next/server';
 export async function POST(request: Request) {
   try {
     const body = await request.json();
+    console.log("we are here")
     const response = await fetch('https://smsportal.mobilitycairo.com/api/generate-hmac', {
       method: 'POST',
       headers: {
@@ -11,6 +12,7 @@ export async function POST(request: Request) {
       },
       body: JSON.stringify(body),
     });
+    console.log("we are here",response)
 
     if (!response.ok) {
       const errorData = await response.json();
@@ -22,12 +24,12 @@ export async function POST(request: Request) {
 
     const data = await response.json();
 
-    console.log(data)
+    // console.log(data)
     return NextResponse.json(data, { status: 200 });
-  } catch (error) {
+  } catch (error:unknown) {
     console.error('Proxy error:', error);
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { error},
       { status: 500 }
     );
   }
