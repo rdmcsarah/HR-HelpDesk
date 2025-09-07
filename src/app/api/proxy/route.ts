@@ -1,39 +1,39 @@
 import { NextResponse } from 'next/server';
 
-export async function POST(request: Request) {
-  try {
-    const body = await request.json();
-    console.log("we are here")
-    const response = await fetch('https://smsportal.mobilitycairo.com/api/generate-hmac', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Requested-With': 'XMLHttpRequest',
-      },
-      body: JSON.stringify(body),
-    });
-    console.log("we are here",response)
+// export async function POST(request: Request) {
+//   try {
+//     const body = await request.json();
+//     console.log("we are here")
+//     const response = await fetch('https://smsportal.mobilitycairo.com/api/generate-hmac', {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//         'X-Requested-With': 'XMLHttpRequest',
+//       },
+//       body: JSON.stringify(body),
+//     });
+//     console.log("we are here",response)
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      return NextResponse.json(
-        { error: errorData, message: 'Failed to generate HMAC' },
-        { status: response.status }
-      );
-    }
+//     if (!response.ok) {
+//       const errorData = await response.json();
+//       return NextResponse.json(
+//         { error: errorData, message: 'Failed to generate HMAC' },
+//         { status: response.status }
+//       );
+//     }
 
-    const data = await response.json();
+//     const data = await response.json();
 
-    // console.log(data)
-    return NextResponse.json(data, { status: 200 });
-  } catch (error:unknown) {
-    console.error('Proxy error:', error);
-    return NextResponse.json(
-      { error},
-      { status: 500 }
-    );
-  }
-}
+//     // console.log(data)
+//     return NextResponse.json(data, { status: 200 });
+//   } catch (error:unknown) {
+//     console.error('Proxy error:', error);
+//     return NextResponse.json(
+//       { error},
+//       { status: 500 }
+//     );
+//   }
+// }
 
 // Optional: Explicitly reject non-POST methods
 export async function GET() {
@@ -43,80 +43,48 @@ export async function GET() {
   );
 }
 
-// import { NextResponse } from 'next/server';
+export async function POST(request: Request) {
+  try {
+    const body = await request.json();
+    console.log("Incoming request body:", body);
 
-// export async function POST(request: Request) {
-//   try {
-//     const body = await request.json();
-//     console.log('🔁 Incoming request to /api/proxy');
-//     console.log('📦 Request body:', body);
+    const response = await fetch('https://smsportal.mobilitycairo.com/api/generate-hmac', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest',
+      },
+      body: JSON.stringify(body),
+    });
 
-//     const apiUrl = process.env.HMAC_API_URL;
+    console.log("Response status:", response.status);
 
-//     if (!apiUrl) {
-//       throw new Error('Missing HMAC_API_URL environment variable');
-//     }
+    const rawText = await response.text(); // <-- get raw text
+    console.log("Raw response:", rawText);
 
-//     console.log('➡️ Proxying to:', apiUrl);
+    if (!response.ok) {
+      return NextResponse.json(
+        { error: rawText, message: 'Failed to generate HMAC' },
+        { status: response.status }
+      );
+    }
 
-//     // Add timeout controller (optional)
-//     const controller = new AbortController();
-//     const timeout = setTimeout(() => controller.abort(), 20000); // 20 seconds
+    let data;
+    try {
+      data = JSON.parse(rawText);
+    } catch {
+      return NextResponse.json(
+        { error: rawText, message: 'Non-JSON response from SMS portal' },
+        { status: 502 }
+      );
+    }
 
-//     const response = await fetch(apiUrl, {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json',
-//         'X-Requested-With': 'XMLHttpRequest',
-//       },
-//       body: JSON.stringify(body),
-//       signal: controller.signal,
-//     });
-
-//     clearTimeout(timeout); // Clear timeout on success
-
-//     if (!response.ok) {
-//       let errorData;
-
-//       try {
-//         // Attempt to parse JSON error from upstream
-//         errorData = await response.json();
-//       } catch {
-//         // If parsing fails, fallback to raw text
-//         const raw = await response.text();
-//         errorData = {
-//           message: 'Unknown error from upstream server',
-//           raw,
-//           status: response.status,
-//         };
-//       }
-
-//       console.error('❌ Upstream server error:', errorData);
-
-//       return NextResponse.json(
-//         { error: errorData, message: 'Failed to generate HMAC' },
-//         { status: response.status }
-//       );
-//     }
-
-//     const data = await response.json();
-//     console.log('✅ Upstream response:', data);
-
-//     return NextResponse.json(data, { status: 200 });
-
-//   } catch (error: any) {
-//     console.error('🔥 Proxy error:', error);
-
-//     return NextResponse.json(
-//       { error: error.message || 'Internal server error' },
-//       { status: 500 }
-//     );
-//   }
-// }
-
-// export async function GET() {
-//   return NextResponse.json(
-//     { message: 'Method Not Allowed' },
-//     { status: 405 }
-//   );
-// }
+    return NextResponse.json(data, { status: 200 });
+  } catch (error: unknown) {
+    console.error("Proxy error:", error);
+    return NextResponse.json(
+      { error: String(error) },
+      { status: 500 }
+    );
+  }
+}
