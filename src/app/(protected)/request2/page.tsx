@@ -958,7 +958,11 @@ const [files, setFiles] = useState<File[]>([]);
       const data = await response.json();
       setRequestId(data.id);
       console.log("Request submitted successfully:", data);
-      const phoneNumber = "2"+empData?.[0].phone;
+      let phoneNumber=empData?.[0].phone;
+      if(empData?.[0].phone[0]=='1'){
+         phoneNumber = "0"+empData?.[0].phone;
+
+      }
       console.log("Employee phone number#######################131#:", phoneNumber);
       console.log("Sending notification...");
       console.log("phone::",phoneNumber)
